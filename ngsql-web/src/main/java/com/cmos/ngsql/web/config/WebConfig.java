@@ -28,13 +28,4 @@ public class WebConfig implements WebMvcConfigurer {
                 registry.addInterceptor(new PrivateParamInterceptor()).addPathPatterns("/**").excludePathPatterns("/toLogin","/login");
         }
 }
-//public class WebConfig implements WebMvcConfigurer {
-//
-//}
-//package com.demo.demo.Controller;
-//
-//        import org.springframework.context.annotation.Configuration;
-//        import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-//        import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
-
 
