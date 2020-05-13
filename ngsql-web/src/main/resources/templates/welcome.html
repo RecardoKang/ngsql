@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/ico" href="../public/src/assets/img/link/home.ico"/>
+    <title>自动化脚本</title>
+    <style>
+        .headers {
+            background-color: #f0ffffdd;
+            /*position: fixed;*/
+            width: 100%;
+        }
+
+        .head-item {
+            padding: 1px 20px;
+        }
+
+        .head-tab {
+            padding: 0 20px;
+        }
+
+        .head-tab button {
+            border-style: unset;
+            background-color: unset;
+            font-size: 20px;
+            font-family: monospace;
+            padding: 15px;
+        }
+
+        .headers button {
+            /*-webkit-transition-duration: 0.4s; !* Safari *!*/
+            transition-duration: 0.4s;
+        }
+
+        .headers button:hover {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+
+        .tabs {
+            float: right;
+            padding: 16px 8px;
+        }
+
+        body {
+            /*height: 1000px;*/
+            background-repeat:repeat-x;
+            background-image: url("https://www.bing.com/th?id=OHR.SeagullsChat_ZH-CN8973709588_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=HpEdgeAn");
+        }
+    </style>
+</head>
+<body>
+<div>
+    <div class="headers">
+        <div class="head-tab">
+            <div class="tabs">
+                <div class="login">
+                    <button>登录</button>
+                </div>
+            </div>
+        </div>
+        <div class="head-item">
+            <h1>自动化脚本</h1>
+        </div>
+    </div>
+    <div class="body">
+        <button>开始</button>
+    </div>
+</div>
+<script src="../public/src/assets/common/jquery-3.5.1.js"></script>
+<script src="../public/src/js/home/welcome.js"></script>
+</body>
+</html>

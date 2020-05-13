@@ -1,0 +1,18 @@
+{
+  "properties": [
+    {
+      "name": "spring.velocity.charset",
+      "type": "java.lang.String",
+      "description": "Description for spring.velocity.charset."
+    },
+    {
+      "name": "spring.velocity.toolbox-config-location",
+      "type": "java.lang.String",
+      "description": "Description for spring.velocity.toolbox-config-location."
+    },
+    {
+      "name": "spring.thymeleaf.prefix.classpath",
+      "type": "java.lang.String",
+      "description": "Description for spring.thymeleaf.prefix.classpath."
+    }
+  ] }
