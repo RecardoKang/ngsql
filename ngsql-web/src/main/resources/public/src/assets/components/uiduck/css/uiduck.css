@@ -13,7 +13,7 @@ table {
 a:active,a:hover {
 	outline:0
 }
-.uiduck-btn {
+.uiDuck-btn {
 	color:#fff;
 	background-color:#409eff;
 	border-color:#409eff;
@@ -36,7 +36,7 @@ a:active,a:hover {
 	cursor:pointer;
 	border-radius:4px
 }
-.uiduck-btn-normal {
+.uiDuck-btn-normal {
     color: #409eff;
     background: #ecf5ff;
     border-color: #b3d8ff;
@@ -61,7 +61,7 @@ a:active,a:hover {
     font-size: 14px;
     border-radius: 4px;
 }
-.uiduck-input {
+.uiDuck-input {
 	height:30px;
 	line-height:1.2;
 	border-color:#cacaca;
@@ -70,30 +70,30 @@ a:active,a:hover {
 	background-color:#fff;
 	border-radius:2px
 }
-.uiduck-input::-webkit-input-placeholder {
+.uiDuck-input::-webkit-input-placeholder {
 	line-height:1.3
 }
-.uiduck-input {
+.uiDuck-input {
 	width:200px;
     padding-left:10px;
     margin:10px;
 }
-.uiduck-input:hover {
+.uiDuck-input:hover {
 	border-color:#b6b5b5!important
 }
-.uiduck-input:focus {
+.uiDuck-input:focus {
 	border-color:#b6b5b5!important
 }
-.uiduck-table {
+.uiDuck-table {
 	width:100%;
 	background-color:#fff;
 	color:#666
 }
-.uiduck-table tr {
+.uiDuck-table tr {
 	transition:all .3s;
 	-webkit-transition:all .3s
 }
-.uiduck-table th {
+.uiDuck-table th {
 	font-weight:600;
 	padding:12px 0;
 	min-width:0;
@@ -103,27 +103,27 @@ a:active,a:hover {
 	position:relative;
 	text-align:left
 }
-.uiduck-table tbody tr:hover,.uiduck-table thead tr {
+.uiDuck-table tbody tr:hover,.uiDuck-table thead tr {
 	background-color:#f2f2f2
 }
-.uiduck-table td,.uiduck-table th,.uiduck-table-page {
+.uiDuck-table td,.uiDuck-table th,.uiDuck-table-page {
 	border-width:1px;
 	border-style:solid;
 	border-color:#e6e6e6
 }
-.uiduck-table td,.uiduck-table th {
+.uiDuck-table td,.uiDuck-table th {
 	position:relative;
 	padding:9px 15px;
 	min-height:20px;
 	line-height:20px;
 	font-size:14px
 }
-.uiduck-table-page {
+.uiDuck-table-page {
 	border-width:1px 0 0;
 	margin-bottom:-1px;
 	overflow:hidden
 }
-.uiduck-table-page {
+.uiDuck-table-page {
 	position:relative;
 	width:100%;
 	padding:7px 7px 0;
@@ -131,13 +131,13 @@ a:active,a:hover {
 	font-size:12px;
 	white-space:nowrap
 }
-.uiduck-table-page>div {
+.uiDuck-table-page>div {
 	height:28px
 }
-.uiduck-table-page {
+.uiDuck-table-page {
 	margin-left:-7px!important
 }
-.uiduck-table-page {
+.uiDuck-table-page {
 	left:0;
 	top:0;
 	padding:0;
@@ -149,11 +149,11 @@ a:active,a:hover {
 	border:none;
 	background:0 0
 }
-.uiduck-table-page {
+.uiDuck-table-page {
 	height:26px;
 	line-height:26px
 }
-.uiduck-page a,.uiduck-page span {
+.uiDuck-page a,.uiDuck-page span {
 	cursor:pointer;
 	display:inline-block;
 	vertical-align:middle;
@@ -165,20 +165,20 @@ a:active,a:hover {
 	color:#333;
 	font-size:12px
 }
-.uiduck-page-disable {
+.uiDuck-page-disable {
 	cursor:text!important;
 	color:#918f8f!important
 }
-.uiduck-page .uiduck-page-its {
+.uiDuck-page .uiDuck-page-its {
 	cursor:pointer;
 	position:relative
 }
-.uiduck-page .uiduck-page-its em {
+.uiDuck-page .uiDuck-page-its em {
 	cursor:pointer;
 	position:relative;
 	color:#fff
 }
-.uiduck-page .uiduck-page-its .uiduck-page-em {
+.uiDuck-page .uiDuck-page-its .uiDuck-page-em {
 	cursor:pointer;
 	position:absolute;
 	left:-1px;
@@ -189,11 +189,11 @@ a:active,a:hover {
 	border-radius:2px;
 	background-color:#1e9fff
 }
-.uiduck-page-last {
+.uiDuck-page-last {
 	border-radius:2px 0 0 2px;
 	cursor:pointer
 }
-.uiduck-page .uiduck-page-skip {
+.uiDuck-page .uiDuck-page-skip {
 	cursor:pointer;
 	height:30px;
 	line-height:30px;
@@ -205,7 +205,7 @@ a:active,a:hover {
 	white-space:nowrap;
 	display:inline-block
 }
-.uiduck-page input {
+.uiDuck-page input {
 	cursor:pointer;
 	width:25px;
 	margin:0 10px;
@@ -213,7 +213,7 @@ a:active,a:hover {
 	text-align:center;
 	height:25px
 }
-.uiduck-page button {
+.uiDuck-page button {
 	height:30px;
 	line-height:30px;
 	border-radius:5px;
@@ -225,12 +225,12 @@ a:active,a:hover {
 	background-color:#f0f0f0;
 	box-sizing:border-box
 }
-.uiduck-page select {
+.uiDuck-page select {
 	height:25px;
 	padding:3px;
 	cursor:pointer
 }
-.noselect {
+.noSelect {
 	-webkit-touch-callout:none;
 	-webkit-user-select:none;
 	-khtml-user-select:none;

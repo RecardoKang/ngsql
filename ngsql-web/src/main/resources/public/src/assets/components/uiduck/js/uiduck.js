@@ -1,4 +1,3 @@
-
 /***
  * Author:nicezz
  * E-mail:hzdz163@163.com
@@ -7,21 +6,29 @@
  * The copyright of this program follows the principle of creative Commons, you can use,
  * modify and distribute this program for free, but this annotation cannot be deleted,
  * please indicate the original author.
- * github https://github.com/nicez2/uiduck 
- * uiduck MIT License By https://www.uiduck.com 
+ * github https://github.com/nicez2/uiduck
+ * uiduck MIT License By https://www.uiduck.com
  */
 uiduck = {
     templateId: "",
-    url: { url: "", type: "", data: {} },
+    url: {url: "", type: "", data: {}},
     data: [],
-    autoNext: { time: 2000, showPage: true },
-    style: { size: "mini", stripe: false, tbClass: "", trClass: "", thClass: "", tdClass: "" },
-    topBar: { templateId: "search", kwLight: true, kwSplite: false, kwSpliteList: [] },
-    rightTool: { templateId: "", title: "", width: "" },
-    loading: { icon: "loading", shade: false, shadeColor: "white" },
-    language: { tag: "Chinese", options: [] },
+    autoNext: {time: 2000, showPage: true},
+    style: {size: "mini", stripe: false, tbClass: "", trClass: "", thClass: "", tdClass: ""},
+    topBar: {templateId: "search", kwLight: true, kwSplite: false, kwSpliteList: []},
+    rightTool: {templateId: "", title: "", width: ""},
+    loading: {icon: "loading", shade: false, shadeColor: "white"},
+    language: {tag: "Chinese", options: []},
     page: true,
-    pageOptions: { style: "", limit: "", dataType: "back", limits: ['5', '10', '15', '20', '25', '30'], layout: ["total", "home", "prev", "next", "last", "set", "jump"], index: 0, count: 0 },
+    pageOptions: {
+        style: "",
+        limit: "",
+        dataType: "back",
+        limits: ['5', '10', '15', '20', '25', '30'],
+        layout: ["total", "home", "prev", "next", "last", "set", "jump"],
+        index: 0,
+        count: 0
+    },
     fieldOptions: [],
     udKey: 'uiduck_' + (new Date()).valueOf(),
     setOptions: function (b) {
@@ -49,11 +56,9 @@ uiduck = {
             var lan = (navigator.language || navigator.browserLanguage).toLowerCase();
             if (lan.indexOf('zh') >= 0) {
                 uiduck.language.tag = 'Chinese'
-            }
-            else if (lan.indexOf('en') >= 0) {
+            } else if (lan.indexOf('en') >= 0) {
                 uiduck.language.tag = 'English'
-            }
-            else {
+            } else {
                 uiduck.language.tag = 'English'
             }
         } else if (b.language.tag == 'Chinese') {
@@ -73,10 +78,10 @@ uiduck = {
         }
         uiduck.language.options = uiduck.language(uiduck);
         if (b.style == undefined) {
-            uiduck.style = { tbClass: "uiduck-table", trClass: "", thClass: "", tdClass: "" }
+            uiduck.style = {tbClass: "uiDuck-table", trClass: "", thClass: "", tdClass: ""}
         } else {
             if (b.style.tbClass == undefined) {
-                b.style.tbClass = 'uiduck-table';
+                b.style.tbClass = 'uiDuck-table';
             }
             if (b.style.trClass == undefined) {
                 b.style.trClass = '';
@@ -112,12 +117,12 @@ uiduck = {
             uiduck.pageOptions.limits = b.pageOptions.limits;
         }
         if (b.pageOptions.pageClass == undefined) {
-            uiduck.pageOptions.pageClass = "uiduck-page-its";
+            uiduck.pageOptions.pageClass = "uiDuck-page-its";
         } else {
             uiduck.pageOptions.pageClass = b.pageOptions.pageClass;
         }
         if (b.pageOptions.emClass == undefined) {
-            uiduck.pageOptions.emClass = 'uiduck-page-em';
+            uiduck.pageOptions.emClass = 'uiDuck-page-em';
         } else {
             uiduck.pageOptions.emClass = b.pageOptions.emClass;
         }
@@ -259,7 +264,7 @@ uiduck = {
         if (uiduck.style.tbClass) {
             c += '<table id=' + uiduck.udKey + ' class="' + uiduck.style.tbClass + '">';
         } else {
-            c += '<table id=' + uiduck.udKey + ' class="uiduck-table">';
+            c += '<table id=' + uiduck.udKey + ' class="uiDuck-table">';
         }
         c += (uiduck.setHead(uiduck));
         if (refresh) {
@@ -338,7 +343,10 @@ uiduck = {
                     uiduckJL = e.data;
                 } else {
                     if (f) {
-                        uiduck.url.data = { "limit": parseInt(e.pageOptions.limit), "page": parseInt(e.pageOptions.index + 1) };
+                        uiduck.url.data = {
+                            "limit": parseInt(e.pageOptions.limit),
+                            "page": parseInt(e.pageOptions.index + 1)
+                        };
                         uiduck.getAjaxData(e, false);
                     }
                     uiduckJL = uiduck.data;
@@ -522,7 +530,7 @@ uiduck = {
     },
     setPage: function (e) {
         var options = e.pageOptions;
-        var g = '<div   class="uiduck-page noselect" >';
+        var g = '<div   class="uiDuck-page noSelect" >';
         if (options.limit != undefined) {
             if (e.pageOptions.dataType == 'front') {
                 var count = parseInt(e.data.length / options.limit);
@@ -545,10 +553,10 @@ uiduck = {
                 }
             } else {
                 if (e.pageOptions.layout.indexOf('home') != -1) {
-                    g += '<a class="uiduck-page-disable" >' + e.language.options.udHome + '</a>';
+                    g += '<a class="uiDuck-page-disable" >' + e.language.options.udHome + '</a>';
                 }
                 if (e.pageOptions.layout.indexOf('prev') != -1) {
-                    g += '<a class="uiduck-page-disable">' + e.language.options.udPrev + '</a>';
+                    g += '<a class="uiDuck-page-disable">' + e.language.options.udPrev + '</a>';
                 }
             }
             for (var i = 0; i < count; i++) {
@@ -660,10 +668,10 @@ uiduck = {
                     }
                 } else {
                     if (e.pageOptions.layout.indexOf('next') != -1) {
-                        g += '<a class="uiduck-page-disable">' + e.language.options.udNext + '</a>';
+                        g += '<a class="uiDuck-page-disable">' + e.language.options.udNext + '</a>';
                     }
                     if (e.pageOptions.layout.indexOf('last') != -1) {
-                        g += '<a class="uiduck-page-disable" >' + e.language.options.udLast + '</a>';
+                        g += '<a class="uiDuck-page-disable" >' + e.language.options.udLast + '</a>';
                     }
                 }
             }
@@ -671,7 +679,7 @@ uiduck = {
                 g += '<span>' + e.language.options.udTotal + ' ' + e.data.length + ' ' + e.language.options.udList + '</span>';
             }
             if (e.pageOptions.layout.indexOf('set') != -1) {
-                g += '<span class="uiduck-page-limits"><select id="ud-page-select" onchange="uiduck.changeLimit(this.value)">';
+                g += '<span class="uiDuck-page-limits"><select id="ud-page-select" onchange="uiduck.changeLimit(this.value)">';
                 for (var j = 0; j < e.pageOptions.limits.length; j++) {
                     if (e.pageOptions.limit == e.pageOptions.limits[j]) {
                         g += '<option value="' + e.pageOptions.limits[j] + '" selected="">' + e.pageOptions.limits[j] + ' ' + e.language.options.udList + '/' + e.language.options.udPage + '</option>';
@@ -682,7 +690,7 @@ uiduck = {
                 g += '</select></span>';
             }
             if (e.pageOptions.layout.indexOf('jump') != -1) {
-                g += '<span class="uiduck-page-skip">' + e.language.options.udGo + '<input id="ud-page-skip-text" type="text" min="1" value="1" class="uiduck-page-input">' + e.language.options.udPage + '<button type="button" class="uiduck-page-btn" onclick="uiduck.skipPage()">' + e.language.options.udSub + '</button></span>'
+                g += '<span class="uiDuck-page-skip">' + e.language.options.udGo + '<input id="ud-page-skip-text" type="text" min="1" value="1" class="uiDuck-page-input">' + e.language.options.udPage + '<button type="button" class="uiDuck-page-btn" onclick="uiduck.skipPage()">' + e.language.options.udSub + '</button></span>'
             }
         } else {
             uiduck.pageOptions.limit = 10;
@@ -700,10 +708,10 @@ uiduck = {
                 }
             } else {
                 if (e.pageOptions.layout.indexOf('home') != -1) {
-                    g += '<a class="uiduck-page-disable" >' + e.language.options.udHome + '</a>';
+                    g += '<a class="uiDuck-page-disable" >' + e.language.options.udHome + '</a>';
                 }
                 if (e.pageOptions.layout.indexOf('prev') != -1) {
-                    g += '<a class="uiduck-page-disable">' + e.language.options.udPrev + '</a>';
+                    g += '<a class="uiDuck-page-disable">' + e.language.options.udPrev + '</a>';
                 }
             }
             for (var i = 0; i < count; i++) {
@@ -717,20 +725,21 @@ uiduck = {
                 if (e.pageOptions.index <= parseInt(e.pageOptions.count - 2)) {
                     if (e.pageOptions.layout.indexOf('next') != -1) {
                         g += '<a class="layui-laypage-next" onclick="uiduck.nextPage();" >' + e.language.options.udNext + '</a>';
-                    } if (e.pageOptions.layout.indexOf('last') != -1) {
+                    }
+                    if (e.pageOptions.layout.indexOf('last') != -1) {
                         g += '<a onclick="uiduck.lastPage();" >' + e.language.options.udLast + '</a>';
                     }
                 } else {
                     if (e.pageOptions.layout.indexOf('next') != -1) {
-                        g += '<a class="uiduck-page-disable">' + e.language.options.udNext + '</a>';
+                        g += '<a class="uiDuck-page-disable">' + e.language.options.udNext + '</a>';
                     }
                     if (e.pageOptions.layout.indexOf('last') != -1) {
-                        g += '<a class="uiduck-page-disable" >' + e.language.options.udLast + '</a>';
+                        g += '<a class="uiDuck-page-disable" >' + e.language.options.udLast + '</a>';
                     }
                 }
             }
             if (e.pageOptions.layout.indexOf('set') != -1) {
-                g += '<span class="uiduck-page-limits"><select  id="ud-page-select"  onchange="uiduck.changeLimit(this.value)">';
+                g += '<span class="uiDuck-page-limits"><select  id="ud-page-select"  onchange="uiduck.changeLimit(this.value)">';
                 for (var j = 0; j < e.pageOptions.limits.length; j++) {
                     if (e.pageOptions.limit == e.pageOptions.limits[j]) {
                         g += '<option value="' + e.pageOptions.limits[j] + '" selected="">' + e.pageOptions.limits[j] + ' ' + e.language.options.udList + '/' + e.language.options.udPage + '</option>';
@@ -892,7 +901,7 @@ uiduck = {
             if (fullKeyWords.indexOf(searchKeyWords.replace(/\s*/g, "")) !== -1) {
                 fullKeyWords = fullKeyWords.replace(
                     searchKeyWords.replace(/\s*/g, ""),
-                    '<a  style="font-weight:1000;color:#E6A23C;">' +
+                    '<a  style="font-weight:900;color:#E6A23C;">' +
                     searchKeyWords.replace(/\s*/g, "") +
                     "</a>"
                 );
@@ -932,17 +941,83 @@ uiduck = {
     language: function (b) {
         var options = {};
         if (b.language.tag == 'Chinese') {
-            options = { "udHome": "首页", "udTotal": "共", "udList": "条", "udPrev": "上一页", "udNext": "下一页", "udLast": "尾页", "udGo": "前往", "udPage": "页", "udSub": "确定", "udNodata": "暂无数据" };
+            options = {
+                "udHome": "首页",
+                "udTotal": "共",
+                "udList": "条",
+                "udPrev": "上一页",
+                "udNext": "下一页",
+                "udLast": "尾页",
+                "udGo": "前往",
+                "udPage": "页",
+                "udSub": "确定",
+                "udNodata": "暂无数据"
+            };
         } else if (b.language.tag == 'English') {
-            options = { "udHome": "Home", "udTotal": "Total item", "udList": "item", "udPrev": "Prev", "udNext": "Next", "udLast": "Last", "udGo": "Jump to ", "udPage": "page", "udSub": "Ok", "udNodata": "Sorry no data" };
+            options = {
+                "udHome": "Home",
+                "udTotal": "Total item",
+                "udList": "item",
+                "udPrev": "Prev",
+                "udNext": "Next",
+                "udLast": "Last",
+                "udGo": "Jump to ",
+                "udPage": "page",
+                "udSub": "Ok",
+                "udNodata": "Sorry no data"
+            };
         } else if (b.language.tag == 'Japanese') {
-            options = { "udHome": "トップページ", "udTotal": "トータル", "udList": "くだり", "udPrev": "前のページ", "udNext": "次のページ", "udLast": "最終ページ", "udGo": "ジャンプして", "udPage": "ページ", "udSub": "さだま·る", "udNodata": "データなし" };
+            options = {
+                "udHome": "トップページ",
+                "udTotal": "トータル",
+                "udList": "くだり",
+                "udPrev": "前のページ",
+                "udNext": "次のページ",
+                "udLast": "最終ページ",
+                "udGo": "ジャンプして",
+                "udPage": "ページ",
+                "udSub": "さだま·る",
+                "udNodata": "データなし"
+            };
         } else if (b.language.tag == 'French') {
-            options = { "udHome": "Accueil", "udTotal": "Total d'entrées", "udList": "item", "udPrev": "Page précédente", "udNext": "Page suivante", "udLast": "Dernière page", "udGo": "Aller à", "udPage": "Page", "udSub": "Déterminer", "udNodata": "Aucune donnée" };
+            options = {
+                "udHome": "Accueil",
+                "udTotal": "Total d'entrées",
+                "udList": "item",
+                "udPrev": "Page précédente",
+                "udNext": "Page suivante",
+                "udLast": "Dernière page",
+                "udGo": "Aller à",
+                "udPage": "Page",
+                "udSub": "Déterminer",
+                "udNodata": "Aucune donnée"
+            };
         } else if (b.language.tag == 'Korean') {
-            options = { "udHome": "홈", "udTotal": "합계", "udList": "조", "udPrev": "이전 페이지", "udNext": "다음 페이지", "udLast": "마지막 페이지", "udGo": "로 이동", "udPage": "페이지", "udSub": "결정", "udNodata": "데이터가 없습니다" };
+            options = {
+                "udHome": "홈",
+                "udTotal": "합계",
+                "udList": "조",
+                "udPrev": "이전 페이지",
+                "udNext": "다음 페이지",
+                "udLast": "마지막 페이지",
+                "udGo": "로 이동",
+                "udPage": "페이지",
+                "udSub": "결정",
+                "udNodata": "데이터가 없습니다"
+            };
         } else if (b.language.tag == 'Spanish') {
-            options = { "udHome": "Inicio", "udTotal": "Total", "udList": "item", "udPrev": "Página anterior", "udNext": "Página siguiente", "udLast": "Ultima pagina", "udGo": "Saltar a", "udPage": "Pagina", "udSub": "Determinar", "udNodata": "Sin datos" };
+            options = {
+                "udHome": "Inicio",
+                "udTotal": "Total",
+                "udList": "item",
+                "udPrev": "Página anterior",
+                "udNext": "Página siguiente",
+                "udLast": "Ultima pagina",
+                "udGo": "Saltar a",
+                "udPage": "Pagina",
+                "udSub": "Determinar",
+                "udNodata": "Sin datos"
+            };
         }
         return options;
     }

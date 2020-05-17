@@ -48,7 +48,7 @@ function getRow(e) {
 }
 function changeTheme(e) {
     $("#ud-top").css('display', 'none');
-    var arr = ["uiduck-table", "uiduck-dark", "uiduck-led", "uiduck-pink", "uiduck-coffee", "uiduck-blue", "uiduck-purple", "uiduck-white"];
+    var arr = ["uiDuck-table", "uiDuck-dark", "uiDuck-led", "uiDuck-pink", "uiDuck-coffee", "uiDuck-blue", "uiDuck-purple", "uiDuck-white"];
     var theme = arr[Math.floor((Math.random() * arr.length))];
     uiduck.setOptions({
         templateId: "table",
@@ -104,7 +104,7 @@ function changeLoading(e) {
     uiduck.setOptions({
         templateId: "table",
         url: { url: "http://data.live.126.net/livechannel/sub/3.json", type: "POST", key: "sublives" },
-        style: { tbClass: "uiduck-table" },
+        style: { tbClass: "uiDuck-table" },
         loading: { icon: loading, time: 1000 },
         page: true,
         fieldOptions: [
@@ -151,7 +151,7 @@ function changeShade(e) {
     uiduck.setOptions({
         templateId: "table",
         url: { url: "http://data.live.126.net/livechannel/sub/3.json", type: "POST", key: "sublives" },
-        style: { tbClass: "uiduck-table" },
+        style: { tbClass: "uiDuck-table" },
         loading: { icon: "uiduck-loading-6", shade: 0.3, shadeColor: "black", time: 1000 },
         page: true,
         fieldOptions: [
@@ -200,7 +200,7 @@ function changeLanguage(e) {
     uiduck.setOptions({
         templateId: "table",
         url: { url: "http://data.live.126.net/livechannel/sub/3.json", type: "POST", key: "sublives" },
-        style: { tbClass: "uiduck-table" },
+        style: { tbClass: "uiDuck-table" },
         language: { tag: tag },
         loading: { icon: "uiduck-loading-6", time: 1000 },
         page: true,
@@ -248,7 +248,7 @@ function changeBlur(e) {
     uiduck.setOptions({
         templateId: "table",
         url: { url: "http://data.live.126.net/livechannel/sub/3.json", type: "POST", key: "sublives" },
-        style: { tbClass: "uiduck-table" },
+        style: { tbClass: "uiDuck-table" },
         loading: { icon: "uiduck-loading-6", blur: 4, time: 1000 },
         page: true,
         fieldOptions: [
@@ -297,7 +297,7 @@ function simplePage(e) {
         url: { url: "http://data.live.126.net/livechannel/sub/3.json", type: "POST", key: "sublives" },
         loading: { icon: "uiduck-loading-6", time: 1000 },
         page: true,
-        pageOptions: { layout: ["total", , "prev", "next", "last"] },
+        pageOptions: { layout: ["total",  "prev", "next", "last"] },
         fieldOptions: [
             {
                 index: true,
@@ -342,7 +342,7 @@ function fullPage(e) {
     uiduck.setOptions({
         templateId: "table",
         url: { url: "http://data.live.126.net/livechannel/sub/3.json", type: "POST", key: "sublives" },
-        style: { tbClass: "uiduck-table" },
+        style: { tbClass: "uiDuck-table" },
         loading: { icon: "uiduck-loading-6", time: 1000 },
         page: true,
         pageOptions: { limit: 5, limits: ['5', '10', '15', '20', '25'], layout: ["total", "home", "prev", "next", "last", "set", "jump"], dataType: "front" },
@@ -391,7 +391,7 @@ function netData(e) {
     uiduck.setOptions({
         templateId: "table",
         url: { url: "http://data.live.126.net/livechannel/sub/3.json", type: "POST", key: "sublives" },
-        style: { tbClass: "uiduck-table" },
+        style: { tbClass: "uiDuck-table" },
         rightTool: { templateId: "barDemo", title: "操作", width: "100px" },
         loading: { icon: "uiduck-loading-6", time: 1000 },
         page: true,
@@ -439,7 +439,7 @@ function localData(e) {
     $("#ud-top").css('display', 'none');
     uiduck.setOptions({
         templateId: "table",
-        style: { tbClass: "uiduck-table" },
+        style: { tbClass: "uiDuck-table" },
         topBar: { templateId: "search", kwLight: true },
         rightTool: { templateId: "barDemo", title: "操作", width: "100px" },
         loading: { icon: "uiduck-loading-6", time: 1000 },
@@ -505,7 +505,7 @@ function localData(e) {
             }]
     });
     var data = [{
-        "icon": "uiduck/assets/head.jpg",
+        "icon": "/src/assets/components/uiduck/assets/head.jpg",
         "name": "nciezz",
         "emil": "hzdz163@163.com",
         "wechat": "wenxuejn",
@@ -515,7 +515,7 @@ function localData(e) {
         "city": 3,
         "like": 1
     }, {
-        "icon": "uiduck/assets/head.jpg",
+        "icon": "/src/assets/components/uiduck/assets/head.jpg",
         "name": "nciezz",
         "emil": "hzdz163@163.com",
         "wechat": "wenxuejn",
@@ -525,7 +525,7 @@ function localData(e) {
         "city": 3,
         "like": 1
     }, {
-        "icon": "uiduck/assets/head.jpg",
+        "icon": "/src/assets/components/uiduck/assets/head.jpg",
         "name": "nciezz",
         "emil": "hzdz163@163.com",
         "wechat": "wenxuejn",
@@ -535,7 +535,7 @@ function localData(e) {
         "city": 3,
         "like": 1
     }, {
-        "icon": "uiduck/assets/head.jpg",
+        "icon": "/src/assets/components/uiduck/assets/head.jpg",
         "name": "nciezz",
         "emil": "hzdz163@163.com",
         "wechat": "wenxuejn",
@@ -545,7 +545,7 @@ function localData(e) {
         "city": 3,
         "like": 1
     }, {
-        "icon": "uiduck/assets/head.jpg",
+        "icon": "/src/assets/components/uiduck/assets/head.jpg",
         "name": "nciezz",
         "emil": "hzdz163@163.com",
         "wechat": "wenxuejn",
@@ -555,7 +555,7 @@ function localData(e) {
         "city": 3,
         "like": 1
     }, {
-        "icon": "uiduck/assets/head.jpg",
+        "icon": "/src/assets/components/uiduck/assets/head.jpg",
         "name": "nciezz",
         "emil": "hzdz163@163.com",
         "wechat": "wenxuejn",
@@ -576,7 +576,7 @@ function autoNext() {
     uiduck.setOptions({
         templateId: "table",
         url: { url: "http://data.live.126.net/livechannel/sub/3.json", type: "POST", key: "sublives" },
-        style: { tbClass: "uiduck-table" },
+        style: { tbClass: "uiDuck-table" },
         autoNext: { time: 4000 },
         loading: { icon: "uiduck-loading-6", blur: 1, time: 1000 },
         page: true,
@@ -622,7 +622,7 @@ function autoNext() {
 function setData() {
     uiduck.setOptions({
         templateId: "table",
-        style: { size: "mini", stripe: false, highlight: true, tbClass: "uiduck-table" },
+        style: { size: "mini", stripe: false, highlight: true, tbClass: "uiDuck-table" },
         topBar: { templateId: "search", kwLight: true },
         rightTool: { templateId: "barDemo", title: "操作", width: "100px" },
         loading: { icon: "uiduck-loading-6", time: 1000 },
@@ -688,7 +688,7 @@ function setData() {
             }]
     });
     var data = [{
-        "icon": "uiduck/assets/head.jpg",
+        "icon": "/src/assets/components/uiduck/assets/head.jpg",
         "name": "nciezz",
         "emil": "hzdz163@163.com",
         "wechat": "wenxuejn",
@@ -698,7 +698,7 @@ function setData() {
         "city": 3,
         "like": 1
     }, {
-        "icon": "uiduck/assets/head.jpg",
+        "icon": "/src/assets/components/uiduck/assets/head.jpg",
         "name": "nciezz",
         "emil": "hzdz163@163.com",
         "wechat": "wenxuejn",
@@ -708,7 +708,7 @@ function setData() {
         "city": 3,
         "like": 1
     }, {
-        "icon": "uiduck/assets/head.jpg",
+        "icon": "/src/assets/components/uiduck/assets/head.jpg",
         "name": "nciezz",
         "emil": "hzdz163@163.com",
         "wechat": "wenxuejn",
@@ -718,7 +718,7 @@ function setData() {
         "city": 3,
         "like": 1
     }, {
-        "icon": "uiduck/assets/head.jpg",
+        "icon": "/src/assets/components/uiduck/assets/head.jpg",
         "name": "nciezz",
         "emil": "hzdz163@163.com",
         "wechat": "wenxuejn",
@@ -728,7 +728,7 @@ function setData() {
         "city": 3,
         "like": 1
     }, {
-        "icon": "uiduck/assets/head.jpg",
+        "icon": "/src/assets/components/uiduck/assets/head.jpg",
         "name": "nciezz",
         "emil": "hzdz163@163.com",
         "wechat": "wenxuejn",
@@ -738,7 +738,7 @@ function setData() {
         "city": 3,
         "like": 1
     }, {
-        "icon": "uiduck/assets/head.jpg",
+        "icon": "/src/assets/components/uiduck/assets/head.jpg",
         "name": "nciezz",
         "emil": "hzdz163@163.com",
         "wechat": "wenxuejn",
@@ -754,5 +754,5 @@ function newVersion() {
     window.location.href = "https://github.com/nicez2/uiduck";
 }
 function viewDocument() {
-    window.location.href = "document.html";
+    window.location.href = "/src/assets/components/uiduck/document.html";
 }
