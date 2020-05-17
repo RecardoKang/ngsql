@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/ico" href="../../assets/img/link/home.ico" />
+    <link rel="icon" type="image/ico" href="../../assets/img/link/home.ico"/>
     <title>自动化脚本</title>
     <style>
         .headers {
@@ -44,7 +44,7 @@
 
         body {
             /*height: 1000px;*/
-            background-repeat:repeat-x;
+            background-repeat: repeat-x;
             background-image: url("https://www.bing.com/th?id=OHR.SeagullsChat_ZH-CN8973709588_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=HpEdgeAn");
         }
     </style>
@@ -54,8 +54,15 @@
     <div class="headers">
         <div class="head-tab">
             <div class="tabs">
-                <div class="login">
-                    <button>登录</button>
+                <div class="login" style="display: none">
+                    <form th:action="@{/login}" method="post">
+                        <button>登录</button>
+                    </form>
+                </div>
+                <div class="logout">
+                    <form th:action="@{/logout}" method="post">
+                        <button>登出</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -64,7 +71,12 @@
         </div>
     </div>
     <div class="body">
-        <button>开始</button>
+        <div class="start">
+            <button>测试ajax请求</button>
+        </div>
+        <div class="textarea">
+
+        </div>
     </div>
 </div>
 <script src="../../assets/common/jquery-3.5.1.js"></script>

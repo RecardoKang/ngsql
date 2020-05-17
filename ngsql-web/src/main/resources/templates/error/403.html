@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<head>
+    <meta charset="UTF-8">
+    <title>没有权限</title>
+</head>
+<body>
+<h1 th:inline="text">抱歉!</h1>
+<p>您没有权限访问该页面 -------这是403界面.</p>
+<form th:action="@{/logout}" method="post">
+    <button>返回登录页面</button>
+</form>
+</body>
+</html>

@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
+    <link href="src/assets/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous" type="text/css">
+    <link href="src/assets/css/signin.css" rel="stylesheet" crossorigin="anonymous" type="text/css">
     <title>登录</title>
 </head>
 <body>
+<div class="container">
+    <form class="form-signin" method="post" th:action="@{/login}">
+        <h2 class="form-signin-heading">请登录</h2>
+        <div th:if="${param.error}" class="alert alert-danger" role="alert">用户名或密码错误</div>
+        <div th:if="${param.logout}" class="alert alert-success" role="alert">您已登出</div>
+        <p>
+            <label for="username" class="sr-only">用户名</label>
+            <input type="text" id="username" name="username" class="form-control" placeholder="用户名/邮箱" required=""
+                   autofocus="">
+        </p>
+        <p>
+            <label for="password" class="sr-only">密码</label>
+            <input type="password" id="password" name="password" class="form-control" placeholder="密码"
+                   required="">
+        </p>
+        <input name="_csrf" type="hidden" value="ab2546a0-dc22-49b2-b2f9-4c907ae2198c">
+        <button class="btn btn-lg btn-primary btn-block" type="submit">登录</button>
+    </form>
+</div>
+<div class="xl-chrome-ext-bar" id="xl_chrome_ext_{4DB361DE-01F7-4376-B494-639E489D19ED}" style="display: none;">
+    <div class="xl-chrome-ext-bar__logo"></div>
 
+    <a id="xl_chrome_ext_download" href="javascript:" class="xl-chrome-ext-bar__option">下载视频</a>
+    <a id="xl_chrome_ext_close" href="javascript:" class="xl-chrome-ext-bar__close"></a>
+</div>
 </body>
 </html>

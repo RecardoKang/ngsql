@@ -22,7 +22,7 @@ public class PrivateParamInterceptor implements HandlerInterceptor {
 
         UserInfo user = (UserInfo) request.getSession().getAttribute("user");
         if (null == user) {
-            response.sendRedirect("toLogin");
+            response.sendRedirect("login");
             flag = false;
         }
         return flag;
