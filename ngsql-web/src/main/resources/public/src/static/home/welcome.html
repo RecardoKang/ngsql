@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
-    <link rel="icon" type="image/ico" href="../../assets/img/link/home.ico"/>
-    <title>自动化脚本</title>
+    <link rel="icon" type="image/ico" href="src/assets/img/link/home.ico"/>
+    <title>欢迎</title>
     <style>
         .headers {
             background-color: #f0ffffdd;
@@ -54,13 +55,13 @@
     <div class="headers">
         <div class="head-tab">
             <div class="tabs">
-                <div class="login" style="display: none">
-                    <form th:action="@{/login}" method="post">
+                <div th:if="${param.logout}" class="login" th:action="@{/login}" STYLE="display: none">
+                    <form method="post">
                         <button>登录</button>
                     </form>
                 </div>
-                <div class="logout">
-                    <form th:action="@{/logout}" method="post">
+                <div th:if="${param.logout}" class="logout" th:if="${param.login}" th:action="@{/logout}">
+                    <form method="post">
                         <button>登出</button>
                     </form>
                 </div>
@@ -72,14 +73,17 @@
     </div>
     <div class="body">
         <div class="start">
-            <button>测试ajax请求</button>
+<!--            <button>测试ajax请求</button>-->
+            <a href="src/static/home/home.html">开始</a>
         </div>
-        <div class="textarea">
+        <div class="textarea" id="table">
 
         </div>
     </div>
 </div>
-<script src="../../assets/common/jquery-3.5.1.js"></script>
-<script src="../../js/home/welcome.js"></script>
+<script src="src/assets/common/jquery-3.5.1.js"></script>
+<script src="src/assets/common/require.js" data-main="../../assets/common/requireMain.js"></script>
+<!--<script src="../../assets/common/requireMain.js"></script>-->
+<script src="src/js/home/welcome.js"></script>
 </body>
 </html>

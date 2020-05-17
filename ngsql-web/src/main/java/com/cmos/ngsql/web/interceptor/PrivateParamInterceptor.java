@@ -1,14 +1,12 @@
 package com.cmos.ngsql.web.interceptor;
 
 import org.springframework.web.method.HandlerMethod;
+import org.springframework.web.servlet.HandlerInterceptor;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
-
-import com.cmos.ngsql.beans.common.UserInfo;
-import org.springframework.web.servlet.HandlerInterceptor;
-import org.springframework.web.servlet.ModelAndView;
 
 public class PrivateParamInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
@@ -20,12 +18,12 @@ public class PrivateParamInterceptor implements HandlerInterceptor {
         Method method = handlerMethod.getMethod();
         System.out.println("用户:" + ip + ",访问目标:" + method.getDeclaringClass().getName() + "." + method.getName());
 
-        UserInfo user = (UserInfo) request.getSession().getAttribute("user");
-        if (null == user) {
-            response.sendRedirect("login");
-            flag = false;
-        }
-        return flag;
+//        UserInfo user = (UserInfo) request.getSession().getAttribute("user");
+//        if (null == user) {
+//            response.sendRedirect("login");
+//            flag = false;
+//        }
+        return true;
     }
 
     public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler, ModelAndView modelAndView) throws Exception {

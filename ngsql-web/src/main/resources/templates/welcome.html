@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/ico" href="src/assets/img/link/home.ico"/>
@@ -44,8 +45,8 @@
 
         body {
             /*height: 1000px;*/
-            background-repeat:repeat-x;
-            background-image: url("https://www.bing.com/th?id=OHR.SeagullsChat_ZH-CN8973709588_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=HpEdgeAn");
+            background-repeat: repeat-x;
+            background-image: url(//www.bing.com/th?id=OHR.LofotenIslands_ZH-CN0114482586_1920x1080.jpg&rf=LaDigue_1920x1080.jpg&pid=HpEdgeAn);
         }
     </style>
 </head>
@@ -54,8 +55,15 @@
     <div class="headers">
         <div class="head-tab">
             <div class="tabs">
-                <div class="login">
-                    <button>登录</button>
+<!--                <div th:if="${param.logout}" class="login" th:action="@{/login}" method="post" role="button">-->
+<!--                    <form method="post">-->
+<!--                        <button>登录</button>-->
+<!--                    </form>-->
+<!--                </div>-->
+                <div class="logout"  th:action="@{/logout}" method="post" role="button">
+                    <form method="post">
+                        <button>登出</button>
+                    </form>
                 </div>
             </div>
         </div>
@@ -65,14 +73,14 @@
     </div>
     <div class="body">
         <div class="start">
-            <button>测试ajax请求</button>
+            <a href="src/static/home/home.html">开始</a>
         </div>
         <div class="textarea">
 
         </div>
     </div>
 </div>
-<script src="src/assets/common/jquery-3.5.1.js"></script>
-<script src="src/js/home/welcome.js"></script>
+<!--<script src="src/assets/common/jquery-3.5.1.js"></script>-->
+<!--<script src="src/js/home/welcome.js"></script>-->
 </body>
 </html>

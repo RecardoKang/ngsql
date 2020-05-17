@@ -10,7 +10,7 @@ public class TempController {
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public ModelAndView welcome() {
-        return new ModelAndView("start");
+        return new ModelAndView("welcome");
     }
 
     @RequestMapping(value = "/welcome", method = RequestMethod.GET)
