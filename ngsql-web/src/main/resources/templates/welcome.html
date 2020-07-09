@@ -44,9 +44,9 @@
         }
 
         body {
-            /*height: 1000px;*/
             background-repeat: repeat-x;
             background-image: url(http://www.neweb.top/bing.php);
+            background-size: cover;
         }
     </style>
 </head>
@@ -55,12 +55,12 @@
     <div class="headers">
         <div class="head-tab">
             <div class="tabs">
-<!--                <div th:if="${param.logout}" class="login" th:action="@{/login}" method="post" role="button">-->
-<!--                    <form method="post">-->
-<!--                        <button>登录</button>-->
-<!--                    </form>-->
-<!--                </div>-->
-                <div class="logout"  th:action="@{/logout}" method="post" role="button">
+                <!--                <div th:if="${param.logout}" class="login" th:action="@{/login}" method="post" role="button">-->
+                <!--                    <form method="post">-->
+                <!--                        <button>登录</button>-->
+                <!--                    </form>-->
+                <!--                </div>-->
+                <div class="logout" th:action="@{/logout}" method="post" role="button">
                     <form method="post">
                         <button>登出</button>
                     </form>
