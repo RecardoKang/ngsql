@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
+<html lang="zh-cn" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <link rel="icon" type="image/ico" href="src/assets/img/link/home.ico"/>
@@ -8,7 +7,6 @@
     <style>
         .headers {
             background-color: #f0ffffdd;
-            /*position: fixed;*/
             width: 100%;
         }
 
@@ -29,7 +27,6 @@
         }
 
         .headers button {
-            /*-webkit-transition-duration: 0.4s; !* Safari *!*/
             transition-duration: 0.4s;
         }
 
@@ -48,6 +45,10 @@
             background-image: url(http://www.neweb.top/bing.php);
             background-size: cover;
         }
+
+        .sayHello {
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -55,11 +56,6 @@
     <div class="headers">
         <div class="head-tab">
             <div class="tabs">
-                <!--                <div th:if="${param.logout}" class="login" th:action="@{/login}" method="post" role="button">-->
-                <!--                    <form method="post">-->
-                <!--                        <button>登录</button>-->
-                <!--                    </form>-->
-                <!--                </div>-->
                 <div class="logout" th:action="@{/logout}" method="post" role="button">
                     <form method="post">
                         <button>登出</button>
@@ -72,15 +68,42 @@
         </div>
     </div>
     <div class="body">
+        <div class="sayHello">
+        </div>
         <div class="start">
             <a href="src/static/home/home.html">开始</a>
         </div>
-        <div class="textarea">
-
+        <div class="autoSql">
+            <a href="src/static/AutoSql/AutoSql.html">自动化脚本</a>
         </div>
     </div>
 </div>
-<!--<script src="src/assets/common/jquery-3.5.1.js"></script>-->
-<!--<script src="src/js/home/welcome.js"></script>-->
+<script>
+    const date = new Date();
+    const hours = date.getHours();
+    let sayHello;
+    if (0 <= hours <= 4 || hours > 22) {
+        sayHello = "深夜"
+    } else if (4 < hours <= 6) {
+        sayHello = "凌晨"
+    } else if (6 < hours <= 9) {
+        sayHello = "早上"
+    } else if (9 < hours <= 11) {
+        sayHello = "上午"
+    } else if (11 < hours <= 14) {
+        sayHello = "中午"
+    } else if (14 < hours <= 17) {
+        sayHello = "下午"
+    } else if (17 < hours <= 19) {
+        sayHello = "傍晚"
+    } else if (19 < hours <= 22) {
+        sayHello = "晚上"
+    } else {
+        sayHello = "你"
+    }
+    sayHello += "好！";
+    let text = document.getElementsByClassName("sayHello")[0];
+    text.innerHTML = sayHello;
+</script>
 </body>
 </html>
