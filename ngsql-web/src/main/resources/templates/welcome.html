@@ -6,44 +6,96 @@
     <title>自动化脚本</title>
     <style>
         .headers {
-            background-color: #f0ffffdd;
+            background-color: #f0ffff77;
             width: 100%;
         }
 
         .head-item {
-            padding: 1px 20px;
+            padding: 33px 20px;
         }
 
         .head-tab {
             padding: 0 20px;
         }
 
-        .head-tab button {
-            border-style: unset;
-            background-color: unset;
-            font-size: 20px;
-            font-family: monospace;
-            padding: 15px;
-        }
-
-        .headers button {
-            transition-duration: 0.4s;
-        }
-
-        .headers button:hover {
-            background-color: #4CAF50; /* Green */
-            color: white;
-        }
-
         .tabs {
             float: right;
-            padding: 16px 8px;
         }
 
         body {
             background-repeat: repeat-x;
             background-image: url(http://www.neweb.top/bing.php);
             background-size: cover;
+        }
+
+        .button-container {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .button-container > button {
+            position: relative;
+            width: 100px;
+            height: 60px;
+            text-align: center;
+            line-height: 60px;
+            margin: 45px;
+            text-decoration: none;
+            color: aqua;
+            font-size: 20px;
+            padding: 0 20px;
+            text-transform: uppercase;
+            transition: 0.5s;
+            overflow: hidden;
+            border-style: none;
+            background-color: transparent;
+            -webkit-box-reflect: below 1px linear-gradient(transparent, #1113);
+        }
+
+        .button-container > button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 20px;
+            height: 20px;
+            border-top: 2px solid aqua;
+            border-left: 2px solid aqua;
+            transition: 0.5s;
+            transition-delay: 0.1s;
+        }
+
+        .button-container > button::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 20px;
+            height: 20px;
+            border-bottom: 2px solid aqua;
+            border-right: 2px solid aqua;
+            transition: 0.5s;
+            transition-delay: 0.1s;
+        }
+
+        .button-container > button:hover::before, button:hover::after {
+            width: 100%;
+            height: 100%;
+            transition-delay: 0s;
+        }
+
+        .button-container > button:hover {
+            background-color: aqua;
+            color: #000;
+            box-shadow: 0 0 50px #21ebff;
+            transition-delay: 0.2s;
+        }
+
+        .button-container > button:nth-child(1) {
+            filter: hue-rotate(150deg);
         }
 
         .sayHello {
@@ -58,7 +110,12 @@
             <div class="tabs">
                 <div class="logout" th:action="@{/logout}" method="post" role="button">
                     <form method="post">
-                        <button>登出</button>
+                        <div  class="button-container">
+                            <button>
+                                登出
+                            </button>
+                        </div>
+
                     </form>
                 </div>
             </div>
@@ -74,7 +131,7 @@
             <a href="src/static/home/home.html">开始</a>
         </div>
         <div class="autoSql">
-            <a href="src/static/AutoSql/AutoSql.html">自动化脚本</a>
+            <a href="src/static/autoSql/autoSql.html">自动化脚本</a>
         </div>
     </div>
 </div>
@@ -82,21 +139,21 @@
     const date = new Date();
     const hours = date.getHours();
     let sayHello;
-    if (0 <= hours <= 4 || hours > 22) {
+    if ((0 <= hours && hours <= 4) || hours > 22) {
         sayHello = "深夜"
-    } else if (4 < hours <= 6) {
+    } else if (4 < hours && hours <= 6) {
         sayHello = "凌晨"
-    } else if (6 < hours <= 9) {
+    } else if (6 < hours && hours <= 9) {
         sayHello = "早上"
-    } else if (9 < hours <= 11) {
+    } else if (9 < hours && hours <= 11) {
         sayHello = "上午"
-    } else if (11 < hours <= 14) {
+    } else if (11 < hours && hours <= 14) {
         sayHello = "中午"
-    } else if (14 < hours <= 17) {
+    } else if (14 < hours && hours <= 17) {
         sayHello = "下午"
-    } else if (17 < hours <= 19) {
+    } else if (17 < hours && hours <= 19) {
         sayHello = "傍晚"
-    } else if (19 < hours <= 22) {
+    } else if (19 < hours && hours <= 22) {
         sayHello = "晚上"
     } else {
         sayHello = "你"

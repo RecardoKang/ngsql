@@ -1,6 +1,10 @@
-require.config({
-    // baseURI: "../../",
+requirejs.config({
+    baseUrl: "../../",
     paths: {
-        "list": "../../assets/components/list/js/uiduck"
-    }
-})
+        "testRadio": "assets/components/radio/radio"
+    },
+    shim:{
+      jquery:"assets/common/jquery-3.5.1"
+    },
+    waitSeconds: 0
+});
