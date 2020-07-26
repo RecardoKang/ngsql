@@ -1,10 +1,9 @@
 requirejs.config({
     baseUrl: "../../",
     paths: {
-        "testRadio": "assets/components/radio/radio"
+        "radios": "assets/components/radios/radios",
+        "jquery": "assets/common/jquery",
     },
-    shim:{
-      jquery:"assets/common/jquery-3.5.1"
-    },
+    shim: {},
     waitSeconds: 0
 });
