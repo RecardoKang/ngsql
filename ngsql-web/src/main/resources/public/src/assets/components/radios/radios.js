@@ -1,10 +1,9 @@
-import handle from 'handlebars';
-define("components/radios/radios.tpl", [handle], function (e) {
+define("components/radios/radios.tpl", ['handlebars'], function (e) {
     return e.template({
         1: function (e, i, l, n, a) {
             let s, t, r = i != null ? i : e.nullContext || {}, d = l.helperMissing, o = "function",
                 c = e.escapeExpression;
-            return '<li class="' + c((t = (t = li.className || (i != null ? i.className : i)) != null ? t : d, typeof t === o ? t.call(r, {
+            return '<li class="' + c((t = (t = l.className || (i != null ? i.className : i)) != null ? t : d, typeof t === o ? t.call(r, {
                 name: "className",
                 hash: {},
                 data: a
@@ -20,7 +19,7 @@ define("components/radios/radios.tpl", [handle], function (e) {
                 fn: e.program(4, a, 0),
                 inverse: e.noop,
                 data: a
-            })) != null ? s : "") + '>\r\n <input type="checkbox"\r\n ' + ((s = (l.ifInDisabledValue || i && i.ifInDisabledValue || d).call(r, i != null ? i.value : i, {
+            })) != null ? s : "") + '>\r\n <input type="checkbox" ' + ((s = (l.ifInDisabledValue || i && i.ifInDisabledValue || d).call(r, i != null ? i.value : i, {
                 name: "ifInDisabledValue",
                 hash: {},
                 fn: e.program(6, a, 0),
@@ -36,37 +35,58 @@ define("components/radios/radios.tpl", [handle], function (e) {
                 name: "value",
                 hash: {},
                 data: a
-            }) : t)) + '" > \r\n </div> \r\n \r\n \r\n <lable> \r\n ' + c((t = (t = l.label || (i != null ? i.label : i)) != null ? t : d, typeof t === o ? t.call(r, {
+            }) : t)) + '" > \r\n </div> \r\n \r\n \r\n <lable>' + c((t = (t = l.label || (i != null ? i.label : i)) != null ? t : d, typeof t === o ? t.call(r, {
                 name: "label",
                 hash: {},
                 data: a
-            }) : t)) + "\r\n </label>\r\n </li>\r\n"
-        }, 2: function (e, i, l, n, a) {
+            }) : t)) + "</label>\r\n </li>\r\n"
+        },
+        2: function () {
             return 'disabled=disabled class="disabled"';
-        }, 4: function () {
+        },
+        4: function () {
             return 'class="checked"';
-        }, 6: function () {
-            return 'class="disabled="disabled"';
-        }, 8: function () {
+        },
+        6: function () {
+            return 'disabled="disabled"';
+        },
+        8: function () {
             return "checked=checked";
-        }, complier: [7, ">4.0.0"], main: function (e, i, l, n, a) {
-            var s, t, r = i != null ? i : e.nullContext || {};
-            return '<div class="sn-radios ' + e.escapeExpression((t = t(t = l.className || (i != null ? i.calssName : i)) != null ? t : l.helperMissing, typeof t === "function" ? t.call(r, {
-                name: "className",
-                hash: {},
-                data: a
-            }) : t)) + '">\r\n <ul class="chk-list">\r\n' + ((s = l.each.call(r, i != null ? i.items : i, {
-                name: "each",
-                hash: {},
-                fn: e.program(1, a, 0),
-                inverse: e.noop,
-                data: a
-            })) != null ? s : "") + "</ul></div>"
-        }, useData: true
+        },
+        compiler: [7, ">4.0.0"],
+        main: function (e, i, l, n, a) {
+            let s, t, r = i != null ? i : e.nullContext || {};
+            return '<div class="sn-radios ' + e.escapeExpression(
+                (
+                    t = (
+                        t = l.className || (i != null ? i.className : i)
+                    ) != null ? t : l.helperMissing, typeof t === "function" ? t.call(
+                        r, {
+                            name: "className",
+                            hash: {},
+                            data: a
+                        }
+                    ) : t
+                )
+            ) + '">\r\n <ul class="chk-list">\r\n' + (
+                (
+                    s = l.each.call(r, i != null ? i.items : i,
+                        {
+                            name: "each",
+                            hash: {},
+                            fn: e.program(1, a, 0),
+                            inverse: e.noop,
+                            data: a
+                        }
+                    )
+                ) != null ? s : ""
+            ) + "</ul></div>";
+        },
+        useData: true
     });
 })
 
-define('radios', ['jquery','components/radios/radios.tpl'], function (e, i, l, n) {
+define('radios', ['jquery', 'eventTarget', 'handlebars', 'components/radios/radios.tpl'], function (e, i, l, n) {
     const a = "1.1.6";
     const s = function (l) {
         if (l.el) {
@@ -88,8 +108,8 @@ define('radios', ['jquery','components/radios/radios.tpl'], function (e, i, l, n
     };
     const t = function () {
         l.registerHelper("ifInDisabledValue", e.proxy(function (i, l) {
-            if (this.options.disabled) {
-                const n = e.inArray(i, this.options.disabled);
+            if (l.data.root.disabled) {
+                const n = e.inArray(i, l.data.root.disabled);
                 if (n === 0) {
                     return 'disabled=disabled class="disabled"';
                 } else {
@@ -98,8 +118,8 @@ define('radios', ['jquery','components/radios/radios.tpl'], function (e, i, l, n
             }
         }, this));
         l.registerHelper("ifInDefaultValue", e.proxy(function (i, l) {
-            if (this.options.defaultValue) {
-                var n = e.inArray(i, this.options.deafultValue.split(","));
+            if (l.data.root.defaultValue) {
+                const n = e.inArray(i, l.data.root.defaultValue.split(","));
                 if (n >= 0) {
                     return 'class="checked" checked="checked"';
                 } else {
@@ -115,16 +135,16 @@ define('radios', ['jquery','components/radios/radios.tpl'], function (e, i, l, n
         }, this))
     };
     const o = function (i) {
-        const l = e(i.target || i.currentTarget).closeset("li");
+        const l = e(i.target || i.currentTarget).closest("li");
         const n = l.find("input");
         const a = l.index();
         const s = this.options.items[a];
-        if (n.attr("disabeld")) {
+        if (n.attr("disabled")) {
             return false;
         }
         if (n.attr("checked") !== "checked") {
-            e("ul>li>div", this.$el.removeClass("checked"));
-            e("ul>li>div>input", this.$.el).attr("checked", false);
+            e("ul>li>div", this.$el).removeClass("checked");
+            e("ul>li>div>input", this.$el).attr("checked", false);
             n.attr("checked", true);
             n.parent().addClass("checked");
         }
@@ -141,9 +161,6 @@ define('radios', ['jquery','components/radios/radios.tpl'], function (e, i, l, n
             this.disable();
         }
     };
-    const c = function (e) {
-        return !!e.TagName;
-    };
     e.extend(s.prototype, i.prototype, {
         version: a,
         disabled: function (i) {
@@ -159,15 +176,18 @@ define('radios', ['jquery','components/radios/radios.tpl'], function (e, i, l, n
                     } else {
                         n = e("input", l);
                         n.attr("disabled", true);
-                        e("ul>li>div", this.$el).addClass("disabled");
+                        l.addClass("disabled");
                     }
                 })
             }
-        }, enable: function () {
+        },
+        enable: function () {
             e("ul>li>div>input", this.$el).attr("disabled", false).parent().removeClass("disabled");
-        }, get: function () {
+        },
+        get: function () {
             return e('ul>li>div>input[checked="checked"]', this.$el).val() || "";
-        }, destroy: function () {
+        },
+        destroy: function () {
             this.$el.remove();
         }
     });
@@ -177,6 +197,9 @@ define('radios', ['jquery','components/radios/radios.tpl'], function (e, i, l, n
         };
         return e;
     }
+    const c = function (e) {
+        return !!e.tagName;
+    };
     return s;
 });
 (function (e) {
@@ -210,7 +233,7 @@ define('radios', ['jquery','components/radios/radios.tpl'], function (e, i, l, n
     "        display: block;\n" +
     "        width: 20px;\n" +
     "        height: 20px;\n" +
-    "        background: url('data:image/png;base64,url') no-repeat;\n" +
+    "        background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAAUCAYAAAB7wJiVAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABF1JREFUeNrsWc1rE0EUn2YlCZpso40oVsUGrdEqXkTxIIgUUagUv+6C9dCDh3jUgx/oSWgvevLrD/ADRQtFinhSC0KVfqStMVo1RbGN6SZqErNZ32+7wjbZ3c5mJebQgcdO33vz63u/2Z2ZN6lTFIUttNpprgUKaqstMjO8iY5vpkcHyQGSJk0dJ+klubFtU/OInX9Ud3nIEk85u+W/4lG+B+lxnmQLiVtT50iGoad8H9nEq4i/utIli4AQTNciQehc3rDUJfqWMI97Nr5cPs+kzA/2bfp7sSDL10kVIeBf8xCn4gUXC52ndwZdbev9rLnBo9rGp3PscSzNuvqnilM/Z/GIyKriUb4+ejynfLdSvswkX0b5gsDdlG9yHjxH/M2ZEA2sp97va12zaiUTXMYrmlwssk+TX9hMOvMUbwCB5i3I6zkcFltvtTWyeo9giDeTk9mJxwl2b1RS8YjEquBpkzFB+S7jzPc7/bmW8s1YTIYj/kpHdANs3epVpmBosMGHfPfibbB4YboPbRRb7x5Za0oeGmx3yIeIrjbeC0yGjXyX4muyis8xf/hCIK9HxlqGxmIF+pQU3gZfjMHYvzh/hV0abAl2jRRmsvx48F3eFS1gLA8eLVHK4bsTinhlWBX0oePBo5jbKXalgnwVjDXAK+Mvm80qsVhMGRgYUAV96Kz4009jR3BZQLCaWaOZpnVS0Dav0tZxanuDIHr48eAb2dnAhTdG+8WO2+/Y/VGJSbmiKuhDBxsH3jnKl1WQrzrWKD49f0Q8i0ajLJVKMVmWVUEfOtjM+NNHs1/0+Wwf07BpYayBaX97s2gbD5s0D96ZZ19ZKiuXOUEHGwdei4N8W4zi0+MlEgl1Esr2D9LBZsaffkJCXo/bdoDaCSJkYAqFgx7beBtnT0zz4vW9z5hiPIlnePDcDvI1GjiHv3Q6bYohSZIpf44LQ+2Ulv9XhVFerm08LV/lH+MZnrLi2Zz9uPO/f+MxYWCKj07lbOPFU3kuvNYm8+VmX8jHg5d3kK/RwDn8+f1+82VPFE35009Ir5TJ2A4QhQ5WEANT78NxyTZeTyzNhXd5zwoW8JYffaGDjQNv2EG+UaP49HiNjY1MEMrjgw42M/70E3JzKpmSUbTwNvhS1Ymd64aB+ebVV0kZpx/uZMm3u3+aCy9Me8PL4yHUGszvdqmCPnRhrXKfB+8i5csqyBfdC0bx6fnzer0sHA6zQCCgTgIEfehgM+Wv5Cx97f2nBPe5HL4YU3om19UO11AbFDmw4ANfjKkWHsU+WEG+gxZ4jvkr3dQjVM73ffg8afnmwAYfrfSPWLxUEaoN+o7e+6heZ5g12I6Rz/3Zq45q4u2iHJI28sXnscsqPqf8Vf1y8eAGv3oUxb8dT+bYo7fOLhed4tX05WIJMIqfk1rREtJOFh+0DQjXx0M2r8st8Yi4/4pH+bZr1++bS67fsYFfoHwf2MSriL+6hV8Ma6st/GJYY+2PAAMAjm6PyQU7CxQAAAAASUVORK5CYII=') no-repeat;\n" +
     "        cursor: pointer;\n" +
     "    }\n" +
     "\n" +
@@ -238,7 +261,7 @@ define('radios', ['jquery','components/radios/radios.tpl'], function (e, i, l, n
     "        background-position: -20px 0;\n" +
     "    }\n" +
     "\n" +
-    "    .chk-list > div.checked {\n" +
+    "    .sn-radios > .chk-list li > div.checked {\n" +
     "        background-position: -40px 0;\n" +
     "    }\n" +
     "\n" +
@@ -259,7 +282,7 @@ define('radios', ['jquery','components/radios/radios.tpl'], function (e, i, l, n
     "    /*高清屏支持*/\n" +
     "    @media only screen and(-webkit-min-device-pixel-ratio: 1.5), only screen and (-o-min-device-pixel-ratio: 3/2), only screen and(min-device-pixel-ratio: 1.5) {\n" +
     "        .sn-radios > .chk-list li > div {\n" +
-    "            background-image: url('data:image/png;base64,url');\n" +
+    "            background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGQAAAAUCAYAAAB7wJiVAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABF1JREFUeNrsWc1rE0EUn2YlCZpso40oVsUGrdEqXkTxIIgUUagUv+6C9dCDh3jUgx/oSWgvevLrD/ADRQtFinhSC0KVfqStMVo1RbGN6SZqErNZ32+7wjbZ3c5mJebQgcdO33vz63u/2Z2ZN6lTFIUttNpprgUKaqstMjO8iY5vpkcHyQGSJk0dJ+klubFtU/OInX9Ud3nIEk85u+W/4lG+B+lxnmQLiVtT50iGoad8H9nEq4i/utIli4AQTNciQehc3rDUJfqWMI97Nr5cPs+kzA/2bfp7sSDL10kVIeBf8xCn4gUXC52ndwZdbev9rLnBo9rGp3PscSzNuvqnilM/Z/GIyKriUb4+ejynfLdSvswkX0b5gsDdlG9yHjxH/M2ZEA2sp97va12zaiUTXMYrmlwssk+TX9hMOvMUbwCB5i3I6zkcFltvtTWyeo9giDeTk9mJxwl2b1RS8YjEquBpkzFB+S7jzPc7/bmW8s1YTIYj/kpHdANs3epVpmBosMGHfPfibbB4YboPbRRb7x5Za0oeGmx3yIeIrjbeC0yGjXyX4muyis8xf/hCIK9HxlqGxmIF+pQU3gZfjMHYvzh/hV0abAl2jRRmsvx48F3eFS1gLA8eLVHK4bsTinhlWBX0oePBo5jbKXalgnwVjDXAK+Mvm80qsVhMGRgYUAV96Kz4009jR3BZQLCaWaOZpnVS0Dav0tZxanuDIHr48eAb2dnAhTdG+8WO2+/Y/VGJSbmiKuhDBxsH3jnKl1WQrzrWKD49f0Q8i0ajLJVKMVmWVUEfOtjM+NNHs1/0+Wwf07BpYayBaX97s2gbD5s0D96ZZ19ZKiuXOUEHGwdei4N8W4zi0+MlEgl1Esr2D9LBZsaffkJCXo/bdoDaCSJkYAqFgx7beBtnT0zz4vW9z5hiPIlnePDcDvI1GjiHv3Q6bYohSZIpf44LQ+2Ulv9XhVFerm08LV/lH+MZnrLi2Zz9uPO/f+MxYWCKj07lbOPFU3kuvNYm8+VmX8jHg5d3kK/RwDn8+f1+82VPFE35009Ir5TJ2A4QhQ5WEANT78NxyTZeTyzNhXd5zwoW8JYffaGDjQNv2EG+UaP49HiNjY1MEMrjgw42M/70E3JzKpmSUbTwNvhS1Ymd64aB+ebVV0kZpx/uZMm3u3+aCy9Me8PL4yHUGszvdqmCPnRhrXKfB+8i5csqyBfdC0bx6fnzer0sHA6zQCCgTgIEfehgM+Wv5Cx97f2nBPe5HL4YU3om19UO11AbFDmw4ANfjKkWHsU+WEG+gxZ4jvkr3dQjVM73ffg8afnmwAYfrfSPWLxUEaoN+o7e+6heZ5g12I6Rz/3Zq45q4u2iHJI28sXnscsqPqf8Vf1y8eAGv3oUxb8dT+bYo7fOLhed4tX05WIJMIqfk1rREtJOFh+0DQjXx0M2r8st8Yi4/4pH+bZr1++bS67fsYFfoHwf2MSriL+6hV8Ma6st/GJYY+2PAAMAjm6PyQU7CxQAAAAASUVORK5CYII=');\n" +
     "            -webkit-background-size: 100px 20px;\n" +
     "            background-size: 100px 20px;\n" +
     "        }\n" +
