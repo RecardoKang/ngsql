@@ -8,39 +8,29 @@ define("lib/checkbox/tpl/checkbox.tpl", ['handlebars'], function (e) {
                     name: "className",
                     hash: {},
                     data: a
-                }) : t)) + '">\r\n' + ((s = (l.ifInDisabledValue || i && i.ifInDisabledValue || d).call(r, i != null ? i.value : i, {
+                }) : t)) + '"' + '>   <input type="' + (
+                    (s = (a.root && a.root.type === "checkbox" ? a.root.type : "radio")) === "radio" ? s + '" name="checkbox_com" ' : s + '" '
+                ) + ((s = (l.ifInDisabledValue || i && i.ifInDisabledValue || d).call(r, i != null ? i.value : i, {
                     name: "ifInDisabledValue",
                     hash: {},
                     fn: e.program(2, a, 0),
                     inverse: e.noop,
                     data: a
-                })) != null ? s : "") + "\r\n " + ((s = (l.ifInDefaultValue || i && i.ifInDefaultValue || d).call(r, i != null ? i.value : i, {
-                    name: "ifInDefaultValue",
-                    hash: {},
-                    fn: e.program(4, a, 0),
-                    inverse: e.noop,
-                    data: a
-                })) != null ? s : "") + '<input type="checkbox" ' + ((s = (l.ifInDisabledValue || i && i.ifInDisabledValue || d).call(r, i != null ? i.value : i, {
-                    name: "ifInDisabledValue",
-                    hash: {},
-                    fn: e.program(6, a, 0),
-                    inverse: e.noop,
-                    data: a
                 })) != null ? s : "") + " " + ((s = (l.ifInDefaultValue || i && i.ifInDefaultValue || d).call(r, i != null ? i.value : i, {
                     name: "ifInDefaultValue",
                     hash: {},
-                    fn: e.program(8, a, 0),
+                    fn: e.program(3, a, 0),
                     inverse: e.noop,
                     data: a
                 })) != null ? s : "") + '\r\n value="' + c((t = (t = l.value || (i != null ? i.value : i)) != null ? t : d, typeof t === o ? t.call(r, {
                     name: "value",
                     hash: {},
                     data: a
-                }) : t)) + '" id="checkbox-' + c((t = (t = l.value || (i != null ? i.value : i)) != null ? t : d, typeof t === o ? t.call(r, {
+                }) : t)) + '" id="checkbox-' + a.root.id + c((t = (t = l.value || (i != null ? i.value : i)) != null ? t : d, typeof t === o ? t.call(r, {
                     name: "value",
                     hash: {},
                     data: a
-                }) : t)) + '"><lable for="checkbox-' + c((t = (t = l.value || (i != null ? i.value : i)) != null ? t : d, typeof t === o ? t.call(r, {
+                }) : t)) + '">\r\n<label for="checkbox-' + a.root.id + c((t = (t = l.value || (i != null ? i.value : i)) != null ? t : d, typeof t === o ? t.call(r, {
                     name: "value",
                     hash: {},
                     data: a
@@ -51,20 +41,14 @@ define("lib/checkbox/tpl/checkbox.tpl", ['handlebars'], function (e) {
                 }) : t)) + "</label>\r\n</li>\r\n"
             },
             2: function () {
-                return 'disabled=disabled class="disabled"';
+                return 'disabled';
             },
-            4: function () {
-                return 'class="checked"';
-            },
-            6: function () {
-                return 'disabled="disabled"';
-            },
-            8: function () {
-                return "checked=checked";
+            3: function () {
+                return 'checked';
             },
             compiler: [7, ">4.0.0"],
             main: function (e, i, l, n, a) {
-                let s, t, r = i != null ? i : e.nullContext || {};
+                let b, s, t, r = i != null ? i : e.nullContext || {};
                 return '<div class="checkboxStyle' + e.escapeExpression(
                     (
                         t = (
@@ -77,7 +61,9 @@ define("lib/checkbox/tpl/checkbox.tpl", ['handlebars'], function (e) {
                             }
                         ) : t
                     )
-                ) + '">\r\n <ul class="Block-PaddingL">\r\n' + (
+                ) + '">\r\n <div class="Block-PaddingL">\r\n' + (
+                    (b = (i && i.title != null ? i.title : null)) != null ? '<li class="title"><label>' + b + '</label></li>' : ""
+                ) + (
                     (
                         s = l.each.call(r, i != null ? i.items : i,
                             {
@@ -89,7 +75,7 @@ define("lib/checkbox/tpl/checkbox.tpl", ['handlebars'], function (e) {
                             }
                         )
                     ) != null ? s : ""
-                ) + "</ul></div>";
+                ) + "</div></div>";
             },
             useData: true
         }
@@ -97,8 +83,10 @@ define("lib/checkbox/tpl/checkbox.tpl", ['handlebars'], function (e) {
 })
 
 define("checkbox", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/checkbox.tpl'], function (e, i, l, n) {
-    const a = "1.1.6";
+    "use strict";
+    const a = "1.0.3";
     const s = function (l) {
+        //确定容器
         if (l.el) {
             if (l.el instanceof jQuery && l.el.length > 0) {
                 this.$el = l.el;
@@ -110,6 +98,19 @@ define("checkbox", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/che
         } else {
             this.$el = e("<div></div>");
         }
+        //根据容器生成不重复的ID
+        let id = l.el;
+        id = id.replace(new RegExp("\\.", "g"), "_");
+        id = id.replace(new RegExp("#", "g"), "_");
+        id = id.replace(new RegExp("\\[", "g"), "_");
+        id = id.replace(new RegExp("]", "g"), "_");
+        id = id.replace(new RegExp("\\(", "g"), "_");
+        id = id.replace(new RegExp("\\)", "g"), "_");
+        l.id = id;
+        //判断类型
+        if (l.type !== "checkbox") {
+            l.type = "radio";
+        }
         this.options = l;
         i.call(this);
         t.call(this);
@@ -118,51 +119,52 @@ define("checkbox", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/che
     };
     const t = function () {
         l.registerHelper("ifInDisabledValue", e.proxy(function (i, l) {
-            if (l.data.root.disabled) {
-                const n = e.inArray(i, l.data.root.disabled);
+            if (this.options.disabled) {
+                const n = e.inArray(i, this.options.disabled);
                 if (n === 0) {
-                    return 'disabled=disabled class="disabled"';
+                    return 'disabled';
                 } else {
                     return "";
                 }
             }
         }, this));
         l.registerHelper("ifInDefaultValue", e.proxy(function (i, l) {
-            if (l.data.root.defaultValue) {
-                const n = e.inArray(i, l.data.root.defaultValue.split(","));
+            if (this.options.defaultValue) {
+                const n = e.inArray(i, this.options.defaultValue.split(","));
                 if (n >= 0) {
-                    return 'class="checked" checked="checked"';
+                    return 'checked';
                 } else {
                     return "";
                 }
             }
-        }))
+        }, this));
     };
     const d = function () {
-        this.$el.on("click", "ul>li", e.proxy(function (e) {
+        this.$el.on("change", "div>li", e.proxy(function (e) {
             o.call(this, e);
             this.trigger('itemClick', e);
         }, this))
     };
     const o = function (i) {
         const l = e(i.target || i.currentTarget).closest("li");
-        const n = l.find("input");
-        const a = l.index();
+        // const n = l.find("input");
+        const a = l.index()-1;
         const s = this.options.items[a];
-        if (n.attr("disabled")) {
-            return false;
-        }
-        if (n.attr("checked") !== "checked") {
-            e("ul>li", this.$el).removeClass("checked");
-            e("ul>li>input", this.$el).attr("checked", false);
-            n.attr("checked", true);
-            n.parent().addClass("checked");
-        }
-        const t = {label: s.label, value: s.value};
-        this.trigger("change", i, t);
-        if (s.click) {
-            s.click(i, t);
-        }
+        this.trigger("change", ["test"]);
+        // if (n.prop("disabled")) {
+        //     return false;
+        // }
+        // if (n.prop("checked") !== true) {
+        //     e("div>li", this.$el).removeClass("checked");
+        //     e("div>li>input", this.$el).prop("checked", false);
+        //     n.prop("checked", true);
+        //     n.parent().addClass("checked");
+        // }
+        // const t = {label: s.label, value: s.value};
+        // this.trigger("change", i, t);
+        // if (s.click) {
+        //     s.click(i, t);
+        // }
     };
     const r = function () {
         this.$el.html(n(this.options));
@@ -174,33 +176,43 @@ define("checkbox", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/che
     e.extend(s.prototype, i.prototype, {
         version: a,
         disabled: function (i) {
-            const l = e("ul>li", this.$el);
-            let n = null;
-            if (i) {
-                const a = i.split(",");
-                e.each(a, function (i, a) {
-                    n = e("input[value=" + a + "]", l);
-                    if (!(n.attr("disabled") === "disabled")) {
-                        n.attr("disabled", true);
-                        n.parent().addClass("disabled");
-                    } else {
-                        n = e("input", l);
-                        n.attr("disabled", true);
-                        l.addClass("disabled");
-                    }
-                })
-            }
+            f.call(this, i, "disabled", true);
         },
-        enable: function () {
-            e("ul>li>input", this.$el).attr("disabled", false).parent().removeClass("disabled");
+        enable: function (i) {
+            f.call(this, i, "disabled", false);
+        },
+        uncheck: function (i) {
+            f.call(this, i, "checked", false);
+        },
+        check: function (i) {
+            f.call(this, i, "checked", true);
         },
         get: function () {
-            return e('ul>li>input[checked="checked"]', this.$el).val() || "";
+            const d = e('div>li>input:checked', this.$el);
+            let l = [];
+            e.each(d, function (k, v) {
+                l[k] = e(v).val();
+            });
+            return l.length > 0 ? l.join(",") : "";
         },
         destroy: function () {
             this.$el.remove();
         }
     });
+    //修改属性
+    const f = function (i, prop, flag) {
+        const l = e("div>li", this.$el);
+        let n = null;
+        if (!!i) {
+            const a = i.split(",");
+            e.each(a, function (i, a) {
+                n = e("#checkbox-" + a, l);
+                n.prop(prop, flag);
+            })
+        } else {
+            e('input', l).prop(prop, flag);
+        }
+    }
     window.console = window.console || function () {
         const e = {};
         e.log = e.warm = e.debug = e.info = e.error = e.time = e.dir = e.profile = e.clear = e.exception = e.trace = e.assert = function () {
@@ -240,13 +252,20 @@ define("checkbox", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/che
     "        }\n" +
     "\n" +
     "        .checkboxStyle > .Block-PaddingL > li input:checked + label {\n" +
-    "            background: url(/assets/lib/checkbox/img/ico_checkon.svg) no-repeat right bottom;\n" +
+    "            background: url(../../assets/lib/checkbox/img/ico_checkbox_on.svg) no-repeat right bottom;\n" +
     "            border: 1px solid #00a4ff;\n" +
     "            background-size: 21px 21px;\n" +
     "            color: #00a4ff\n" +
     "        }\n" +
     "\n" +
     "        .checkboxStyle > .Block-PaddingL > li input:disabled + label {\n" +
-    "            opacity: 0.7;\n" +
-    "        }"
+    "            opacity: 0.5;\n" +
+    "        }\n" +
+    "\n" +
+    "        .checkboxStyle > .Block-PaddingL > li.title > label{\n" +
+    "            border: none;\n" +
+    "            color: black;\n" +
+    "            font-weight: bold;\n" +
+    "            min-width: auto;\n" +
+    "        }\n"
 )
