@@ -8,64 +8,32 @@
         <version>1.0.0-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
     <groupId>com.cmos</groupId>
-    <artifactId>ngsql-beans</artifactId>
+    <artifactId>ngsql-iservice</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>ngsql-beans</name>
-    <description>用户信息</description>
+    <name>ngsql-iservice</name>
+    <description>service接口</description>
 
     <properties>
         <java.version>11</java.version>
     </properties>
 
     <dependencies>
-        <!--内部模块-->
+        <dependency>
+            <groupId>com.cmos</groupId>
+            <artifactId>ngsql-beans</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>com.cmos</groupId>
             <artifactId>ngsql-utils</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
-
-        <!--mybatis-->
-        <dependency>
-            <groupId>mysql</groupId>
-            <artifactId>mysql-connector-java</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.mybatis</groupId>
-            <artifactId>mybatis-spring</artifactId>
-        </dependency>
-
-        <!--springboot-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-beans</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-core</artifactId>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jdbc</artifactId>
-        </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>

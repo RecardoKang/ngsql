@@ -8,12 +8,11 @@
         <version>1.0.0-SNAPSHOT</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
-
     <groupId>com.cmos</groupId>
-    <artifactId>ngsql-dao</artifactId>
+    <artifactId>ngsql-service-impl</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <name>ngsql-dao</name>
-    <description>数据库连接服务</description>
+    <name>ngsql-service-impl</name>
+    <description>service接口实现</description>
 
     <properties>
         <java.version>11</java.version>
@@ -23,6 +22,21 @@
         <dependency>
             <groupId>com.cmos</groupId>
             <artifactId>ngsql-beans</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cmos</groupId>
+            <artifactId>ngsql-dao</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cmos</groupId>
+            <artifactId>ngsql-iservice</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cmos</groupId>
+            <artifactId>ngsql-utils</artifactId>
             <version>1.0.0-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -44,16 +58,12 @@
     </dependencies>
 
     <build>
-        <sourceDirectory>src/main/java</sourceDirectory>
-        <resources>
-            <resource>
-                <directory>src/main/resources</directory>
-                <includes>
-                    <include>**/*.*</include>
-                </includes>
-                <filtering>true</filtering>
-            </resource>
-        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
     </build>
 
 </project>
