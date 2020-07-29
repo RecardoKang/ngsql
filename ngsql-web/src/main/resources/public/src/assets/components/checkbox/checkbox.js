@@ -84,7 +84,7 @@ define("lib/checkbox/tpl/checkbox.tpl", ['handlebars'], function (e) {
 
 define("checkbox", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/checkbox.tpl'], function (e, i, l, n) {
     "use strict";
-    const a = "1.0.3";
+    const a = "1.1.3";
     const s = function (l) {
         //确定容器
         if (l.el) {
@@ -118,7 +118,7 @@ define("checkbox", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/che
         d.call(this);
     };
     const t = function () {
-        l.registerHelper("ifInDisabledValue", e.proxy(function (i, l) {
+        l.registerHelper("ifInDisabledValue", e.proxy(function (i) {
             if (this.options.disabled) {
                 const n = e.inArray(i, this.options.disabled);
                 if (n === 0) {
@@ -128,7 +128,7 @@ define("checkbox", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/che
                 }
             }
         }, this));
-        l.registerHelper("ifInDefaultValue", e.proxy(function (i, l) {
+        l.registerHelper("ifInDefaultValue", e.proxy(function (i) {
             if (this.options.defaultValue) {
                 const n = e.inArray(i, this.options.defaultValue.split(","));
                 if (n >= 0) {
@@ -142,29 +142,16 @@ define("checkbox", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/che
     const d = function () {
         this.$el.on("change", "div>li", e.proxy(function (e) {
             o.call(this, e);
-            this.trigger('itemClick', e);
         }, this))
     };
     const o = function (i) {
         const l = e(i.target || i.currentTarget).closest("li");
-        // const n = l.find("input");
-        const a = l.index()-1;
+        const n = l.find("input");
+        const a = l.index() - 1;
         const s = this.options.items[a];
-        this.trigger("change", ["test"]);
-        // if (n.prop("disabled")) {
-        //     return false;
-        // }
-        // if (n.prop("checked") !== true) {
-        //     e("div>li", this.$el).removeClass("checked");
-        //     e("div>li>input", this.$el).prop("checked", false);
-        //     n.prop("checked", true);
-        //     n.parent().addClass("checked");
-        // }
-        // const t = {label: s.label, value: s.value};
-        // this.trigger("change", i, t);
-        // if (s.click) {
-        //     s.click(i, t);
-        // }
+        s.checked = n.prop("checked");
+        s.disabled = n.prop("disabled");
+        this.trigger("change", s);
     };
     const r = function () {
         this.$el.html(n(this.options));
@@ -202,11 +189,11 @@ define("checkbox", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/che
     //修改属性
     const f = function (i, prop, flag) {
         const l = e("div>li", this.$el);
-        let n = null;
+        const id = this.options.id;
         if (!!i) {
             const a = i.split(",");
             e.each(a, function (i, a) {
-                n = e("#checkbox-" + a, l);
+                const n = e("#checkbox-" + id + a, l);
                 n.prop(prop, flag);
             })
         } else {
@@ -230,7 +217,6 @@ define("checkbox", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/che
     i.getElementsByTagName("head")[0][l](a);
     a[n] ? a[n].cssText = e : a[l](i.createTextNode(e));
 })(
-    "         @charset \"UTF-8\";\n" +
     "        .checkboxStyle input {\n" +
     "            display: none\n" +
     "        }\n" +

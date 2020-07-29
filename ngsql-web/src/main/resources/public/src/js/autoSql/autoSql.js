@@ -33,14 +33,42 @@ require(['checkbox'], function (Checkbox) {
                 }
             ]
         });
-        checkbox.on("change", function (e, data) {
-            console.log(e);
+        checkbox.on("change", function (data) {
             console.log(data);
         });
-        checkbox.on('itemClick',function (e,data) {
-            console.log(e);
-            console.log(data);
-        })
+        $(".radio>.getVersion").on('click', function () {
+            console.log(checkbox.version);
+        });
+        $(".radio>.testDisabled").on('click', function () {
+            checkbox.disabled();
+        });
+        $(".radio>.testDisabled1").on('click', function () {
+            checkbox.disabled('1');
+        });
+        $(".radio>.testEnable").on('click', function () {
+            checkbox.enable();
+        });
+        $(".radio>.testGet").on('click', function () {
+            console.log(checkbox.get());
+        });
+        $(".radio>.testEnable1").on('click', function () {
+            checkbox.enable('1');
+        });
+        $(".radio>.testDestroy").on('click', function () {
+            checkbox.destroy();
+        });
+        $(".radio>.testCheck").on('click', function () {
+            checkbox.check();
+        });
+        $(".radio>.testCheck1").on('click', function () {
+            checkbox.check('1');
+        });
+        $(".radio>.testUncheck").on('click', function () {
+            checkbox.uncheck();
+        });
+        $(".radio>.testUncheck1").on('click', function () {
+            checkbox.uncheck('1');
+        });
         const checkbox2 = new Checkbox({
             el: '#testCheckbox2',//绑定的容器;必填
             title: '国家',//标题;可选
@@ -61,38 +89,41 @@ require(['checkbox'], function (Checkbox) {
                 }
             ]
         });
-        $(".getVersion").on('click', function () {
-            console.log(checkbox.version);
+        checkbox2.on("change", function (data) {
+            console.log(data);
         });
-        $(".testDisabled").on('click', function () {
-            checkbox.disabled();
+        $(".checkbox>.getVersion").on('click', function () {
+            console.log(checkbox2.version);
         });
-        $(".testDisabled1").on('click', function () {
-            checkbox.disabled('1');
+        $(".checkbox>.testDisabled").on('click', function () {
+            checkbox2.disabled();
         });
-        $(".testEnable").on('click', function () {
-            checkbox.enable();
+        $(".checkbox>.testDisabled1").on('click', function () {
+            checkbox2.disabled('1');
         });
-        $(".testGet").on('click', function () {
-            console.log(checkbox.get());
+        $(".checkbox>.testEnable").on('click', function () {
+            checkbox2.enable();
         });
-        $(".testEnable1").on('click', function () {
-            checkbox.enable('1');
+        $(".checkbox>.testGet").on('click', function () {
+            console.log(checkbox2.get());
         });
-        $(".testDestroy").on('click', function () {
-            checkbox.destroy();
+        $(".checkbox>.testEnable1").on('click', function () {
+            checkbox2.enable('1');
         });
-        $(".testCheck").on('click', function () {
-            checkbox.check();
+        $(".checkbox>.testDestroy").on('click', function () {
+            checkbox2.destroy();
         });
-        $(".testCheck1").on('click', function () {
-            checkbox.check('1');
+        $(".checkbox>.testCheck").on('click', function () {
+            checkbox2.check();
         });
-        $(".testUncheck").on('click', function () {
-            checkbox.uncheck();
+        $(".checkbox>.testCheck1").on('click', function () {
+            checkbox2.check('1');
         });
-        $(".testUncheck1").on('click', function () {
-            checkbox.uncheck('1');
+        $(".checkbox>.testUncheck").on('click', function () {
+            checkbox2.uncheck();
+        });
+        $(".checkbox>.testUncheck1").on('click', function () {
+            checkbox2.uncheck('1');
         });
     })
 })
