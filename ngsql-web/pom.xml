@@ -21,7 +21,14 @@
         <springboot-thymeleaf.version>3.0.9.RELEASE</springboot-thymeleaf.version>
         <thymeleaf-layout-dialect.version>2.3.0</thymeleaf-layout-dialect.version>
     </properties>
-
+    <!--配置依赖下载源为阿里服务器-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>alimaven spring plugin</id>
+            <name>alimaven spring plugin</name>
+            <url>https://maven.aliyun.com/repository/spring-plugin</url>
+        </pluginRepository>
+    </pluginRepositories>
     <dependencies>
         <dependency>
             <groupId>com.cmos</groupId>

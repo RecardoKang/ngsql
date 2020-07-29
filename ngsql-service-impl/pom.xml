@@ -17,7 +17,14 @@
     <properties>
         <java.version>11</java.version>
     </properties>
-
+    <!--配置依赖下载源为阿里服务器-->
+    <pluginRepositories>
+        <pluginRepository>
+            <id>alimaven spring plugin</id>
+            <name>alimaven spring plugin</name>
+            <url>https://maven.aliyun.com/repository/spring-plugin</url>
+        </pluginRepository>
+    </pluginRepositories>
     <dependencies>
         <dependency>
             <groupId>com.cmos</groupId>
