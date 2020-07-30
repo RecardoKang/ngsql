@@ -8,3 +8,6 @@ return h.template({
 define('tab', ['jquery', 'eventTarget', 'handlebars', 'components/tab/tab.tpl'], function (j, e, h, c) {
 
 });
+(function (e) {
+
+})

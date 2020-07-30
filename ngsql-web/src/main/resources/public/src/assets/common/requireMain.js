@@ -1,6 +1,7 @@
 requirejs.config({
     baseUrl: "../../",
     paths: {
+        "components":"assets/components/components",
         "radios": "assets/components/radios/radios",
         "jquery": "assets/common/jquery",
         "eventTarget": "assets/common/eventTarget",

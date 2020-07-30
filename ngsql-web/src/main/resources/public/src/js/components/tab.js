@@ -1,20 +1,20 @@
-require(['tab'], function (Tab) {
+require(['jquery'], function () {
     $(function () {
-        $('.tab-menus li').each(function () {
+        $('.menus3 li').each(function () {
             $(this).mouseenter(function () {
                 const index = $(this).index();
-                move.call($('.tab-menus .bg-blue'), index);
+                move.call($('.menus3 .bg-blue'), index);
             }).mousedown(function () {
                 const index = $(this).index();
-                $('.tab-menus li.checked').removeClass("checked");
+                $('.menus3 li.checked').removeClass("checked");
                 $(this).addClass("checked");
                 $('.tab2').removeClass('show').eq(index).addClass('show');
-                move.call($('.tab-menus .bg-white'), index);
+                move.call($('.menus3 .bg-white'), index);
             });
         });
-        $('.tab-menus>ul').mouseleave(function () {
-            const index = $('.tab-menus li.checked').index();
-            move.call($('.tab-menus .bg-blue'), index);
+        $('.menus3>ul').mouseleave(function () {
+            const index = $('.menus3 li.checked').index();
+            move.call($('.menus3 .bg-blue'), index);
         });
 
         function move(index) {
