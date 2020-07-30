@@ -3,22 +3,42 @@ require(['tab'], function (Tab) {
         $('.tab-menus li').each(function () {
             $(this).mouseenter(function () {
                 const index = $(this).index();
-                move.call($('.tab-menus .bg-blue'), index);
+                move.call($('.tab-menu-bg li.tab-title-bg-blue'), index);
             }).mousedown(function () {
                 const index = $(this).index();
-                $('.tab-menus li.checked').removeClass("checked");
+                $('.tab-menu-ul li.checked').removeClass("checked");
                 $(this).addClass("checked");
-                $('.tab2').removeClass('show').eq(index).addClass('show');
-                move.call($('.tab-menus .bg-white'), index);
+                $('.tab-menus>.tab-context').removeClass('show').eq(index).addClass('show');
+                move.call($('.tab-menu-bg li.tab-title-bg-white'), index);
             });
         });
         $('.tab-menus>ul').mouseleave(function () {
-            const index = $('.tab-menus li.checked').index();
-            move.call($('.tab-menus .bg-blue'), index);
+            const index = $('.tab-menu-ul li.checked').index();
+            move.call($('.tab-menu-bg li.tab-title-bg-blue'), index);
         });
 
         function move(index) {
             this.css('left', (index) * 150 + 'px');
         }
+
+        new Tab({
+            el: '#testTab',
+            items: [
+                {
+                    title: 'tab1',
+                    className: 'tab',
+                    render: function (e) {
+                        return "tab1";
+                    }
+                },
+                {
+                    title: 'tab2',
+                    className: 'tab',
+                    render: function (e) {
+                        return "tab2";
+                    }
+                }
+            ]
+        });
     });
 })

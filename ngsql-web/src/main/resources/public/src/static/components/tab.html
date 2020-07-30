@@ -21,7 +21,7 @@
             overflow: hidden;
         }
 
-        .tab-menus ul.bg {
+        .tab-menus ul.tab-menu-bg {
             z-index: -1;
             background-color: #009fe977;
         }
@@ -49,7 +49,7 @@
             color: #000;
         }
 
-        .tab-menus li.bg {
+        .tab-menus>.tab-menu-bg>li {
             position: absolute;
             -webkit-transition: all .5s;
             -moz-transition: all .5s;
@@ -57,19 +57,19 @@
             transition: all .5s
         }
 
-        .tab-menus .bg-blue {
+        .tab-menus .tab-title-bg-blue {
             background: #009fe9;
         }
 
-        .tab-menus .bg-white {
+        .tab-menus .tab-title-bg-white {
             background: #fff;
         }
 
-        .tab-menus .tab {
+        .tab-menus .tab-context {
             display: none;
         }
 
-        .tab-menus .tab.show {
+        .tab-menus .tab-context.show {
             display: block;
         }
 
@@ -78,40 +78,42 @@
 <body>
 <div>tab组件测试</div>
 <div id="testTab">
-    <div class="menus menus3">
-        <ul class="bg">
-            <li class="bg bg-blue"></li>
-            <li class="bg bg-white"></li>
+<div>
+    <div class="tab-menus">
+        <ul class="tab-menu-bg">
+            <li class="tab-title-bg-blue"></li>
+            <li class="tab-title-bg-white"></li>
         </ul>
         <ul class="tab-menu-ul">
-            <li class="tab-title over checked"><span>tab1</span></li>
-            <li class="tab-title" title="dd"><span>tab2fefwwefe vefwbrvwef</span></li>
-            <li class="tab-title"><span>tab3</span></li>
-            <li class="tab-title"><span>tab4</span></li>
-            <li class="tab-title"><span>tab5</span></li>
+            <li><span>tab1</span></li>
+            <li title="radio"><span>radio</span></li>
+            <li title="checkbox"><span>checkbox</span></li>
+            <li><span>tab4</span></li>
+            <li><span>tab5</span></li>
         </ul>
-        <div class="tab tab2 show">
+        <div class="tab-context show">
             <div>
                 <img src="../../assets/img/link/home.ico"/>
             </div>
             tab1
         </div>
-        <div class="tab tab2">
-            tab2
+        <div class="tab-context">
+            <a href="../../static/components/radio.html">radio</a>
         </div>
-        <div class="tab tab2">
-            tab3
+        <div class="tab-context">
+            <a href="../../static/components/checkbox.html">checkbox</a>
         </div>
-        <div class="tab tab2">
+        <div class="tab-context">
             tab4
         </div>
-        <div class="tab tab2">
+        <div class="tab-context">
             tab5
         </div>
     </div>
 </div>
+
 <script src="../../assets/common/require.js"></script>
 <script src="../../assets/common/requireMain.js"></script>
-<script src="../../js/components/tab.js"></script>
+<script src="../../js/test/test.js"></script>
 </body>
 </html>

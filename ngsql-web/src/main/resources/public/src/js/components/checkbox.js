@@ -11,7 +11,7 @@ require(['checkbox'], function (Checkbox) {
             el: '#testRadio',//绑定的容器;必填
             title: '性别',//标题;可选
             type: 'radio',//类型,默认为radio,另可选填checkbox;可选
-            defaultValue: '1',//初始化时默认选中的选项,多个值用逗号分隔;可选
+
             disabled: '1',//初始化时需要禁用的选项,填对应选项的value值，多个值用逗号分隔;可选
             items: [//内容,list<map>
                 {
