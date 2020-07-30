@@ -86,21 +86,10 @@ define("components/radios/radios.tpl", ['handlebars'], function (e) {
     });
 })
 
-define('radios', ['jquery', 'eventTarget', 'handlebars', 'components/radios/radios.tpl'], function (e, i, l, n) {
+define('radios', ['jquery', 'eventTarget', 'handlebars', 'components/radios/radios.tpl', 'components'], function (e, i, l, n, m) {
     const a = "1.1.6";
     const s = function (l) {
-        if (l.el) {
-            if (l.el instanceof jQuery && l.el.length > 0) {
-                this.$el = l.el;
-            } else if (c(l.el)) {
-                this.$el = e(l.el);
-            } else if (typeof l.el == "string" && e(l.el).length > 0) {
-                this.$el = e(l.el);
-            }
-        } else {
-            this.$el = e("<div></div>");
-        }
-        this.options = l;
+        e.extend(this.prototype, m.getEl.call(this, l));
         i.call(this);
         t.call(this);
         r.call(this);
@@ -191,15 +180,6 @@ define('radios', ['jquery', 'eventTarget', 'handlebars', 'components/radios/radi
             this.$el.remove();
         }
     });
-    window.console = window.console || function () {
-        const e = {};
-        e.log = e.warm = e.debug = e.info = e.error = e.time = e.dir = e.profile = e.clear = e.exception = e.trace = e.assert = function () {
-        };
-        return e;
-    }
-    const c = function (e) {
-        return !!e.tagName;
-    };
     return s;
 });
 require(['components'], function (c) {

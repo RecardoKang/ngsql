@@ -3,13 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>checkbox组件</title>
+    <style>
+        .clear{
+            clear: both;
+        }
+    </style>
 </head>
 <body>
 <div class="t-panel">
     <div class="t-panel-layout">
         <div>测试radios</div>
         <div id="testRadio"></div>
-        <div class="radio">
+        <div class="radio clear">
             <a href="javascript:" class="getVersion">版本</a>
             <a href="javascript:" class="testDisabled">禁用</a>
             <a href="javascript:" class="testDisabled1">禁用1</a>
@@ -24,7 +29,7 @@
         </div>
         <div>测试checkbox</div>
         <div id="testCheckbox2"></div>
-        <div class="checkbox">
+        <div class="checkbox clear">
             <a href="javascript:" class="getVersion">版本</a>
             <a href="javascript:" class="testDisabled">禁用</a>
             <a href="javascript:" class="testDisabled1">禁用1</a>
@@ -41,6 +46,6 @@
 </div>
 <script src="../../assets/common/require.js"></script>
 <script src="../../assets/common/requireMain.js"></script>
-<script src="../../js/checkbox/checkbox.js"></script>
+<script src="../../js/components/checkbox.js"></script>
 </body>
 </html>
