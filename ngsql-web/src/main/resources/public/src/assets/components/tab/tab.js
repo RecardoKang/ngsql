@@ -39,7 +39,7 @@ define('components/tab/tab.tpl', ['handlebars'], function (h) {
                             }
                         )
                     ) != null ? s : ""
-                ) + '</ul></div>' + (
+                ) + '</ul></div><div class="tab-content">' + (
                     (
                         s = l.each.call(r, i != null ? i.items : i,
                             {
@@ -51,7 +51,7 @@ define('components/tab/tab.tpl', ['handlebars'], function (h) {
                             }
                         )
                     ) != null ? s : ""
-                ) + '</div>';
+                ) + '</div></div>';
         },
         useData: true
     });
@@ -72,8 +72,8 @@ define('tab', ['jquery', 'eventTarget', 'handlebars', 'components/tab/tab.tpl', 
             switchTab: function (t) {
                 const $el = this.$el;
                 let index = 0;
-                if (!!j('.tab-menus>div.' + t, $el).length > 0) {
-                    index = j('.tab-menus>div.' + t, $el).index() - 1;
+                if (!!j('.tab-menus>div.tab-content>div.' + t, $el).length > 0) {
+                    index = j('.tab-menus>div.tab-content>div.' + t, $el).index() - 1;
                 } else if (typeof t === "number" || (typeof t === "string" && /^\d+$/.test(t)) && !isNaN(Number(t))) {
                     index = Number(t);
                     if (index >= this.orginTab.length) {
@@ -153,7 +153,7 @@ define('tab', ['jquery', 'eventTarget', 'handlebars', 'components/tab/tab.tpl', 
             const index = j(this).index();
             j('.tab-menu-ul li.checked', e).removeClass("checked");
             j(this).addClass("checked");
-            j('.tab-menus>div', e).removeClass('show').eq(index + 1).addClass('show');
+            j('.tab-menus>div.tab-content>div', e).removeClass('show').eq(index).addClass('show');
             m.call(e, 'white', index);
             m.call(e, 'blue', index);
         }
@@ -161,7 +161,7 @@ define('tab', ['jquery', 'eventTarget', 'handlebars', 'components/tab/tab.tpl', 
             let r = this.options.items[d].render;
             r = !!r ? r(this.orginTab) : "";
             const c = !!this.options.items[d].className ? this.options.items[d].className : "";
-            const $div = j('.tab-menus>div:not(.tab-menu):eq(' + d + ')', this.$el).addClass(c);
+            const $div = j('.tab-menus>div.tab-content>div', this.$el).eq(d).addClass(c);
             if (r instanceof jQuery) {
                 $div.append(r);
                 this.orginTab[d] = {content: $div};
@@ -178,9 +178,8 @@ define('tab', ['jquery', 'eventTarget', 'handlebars', 'components/tab/tab.tpl', 
                     return false;
                 }
             });
-            j('.tab-menus>div.show', this.$el).removeClass('show');
+            j('.tab-menus>div.tab-content>div.show', this.$el).removeClass('show');
             $div.addClass(c).addClass('show');
-            // j('.tab-menus>div:eq(' + i + ')', this.$el).after(this.orginTab[d].content);
             m.call(this.$el, 'white', d);
             m.call(this.$el, 'blue', d);
         };
@@ -199,7 +198,7 @@ require(['components'], function (c) {
         '            border: 1px solid #009fe9;\n' +
         '        }\n' +
         '\n' +
-        '        .tab-menus ul {\n' +
+        '        .tab-menus>div.tab-menu>ul {\n' +
         '            height: 42px;\n' +
         '            width: 100%;\n' +
         '            position: relative;\n' +
@@ -210,16 +209,16 @@ require(['components'], function (c) {
         '            overflow: hidden;\n' +
         '        }\n' +
         '\n' +
-        '        .tab-menus ul.tab-menu-bg {\n' +
+        '        .tab-menus>div.tab-menu>ul.tab-menu-bg {\n' +
         '            z-index: -1;\n' +
         '            background-color: #009fe977;\n' +
         '        }\n' +
         '\n' +
-        '        .tab-menus ul.tab-menu-ul {\n' +
+        '        .tab-menus>div.tab-menu>ul.tab-menu-ul {\n' +
         '            position: fixed;\n' +
         '        }\n' +
         '\n' +
-        '        .tab-menus>.tab-menu li {\n' +
+        '        .tab-menus>.tab-menu>ul>li {\n' +
         '            list-style: none;\n' +
         '            width: 140px;\n' +
         '            padding: 0 5px;\n' +
@@ -227,7 +226,7 @@ require(['components'], function (c) {
         '            height: inherit;\n' +
         '        }\n' +
         '\n' +
-        '        .tab-menus .tab-menu-ul > li {\n' +
+        '        .tab-menus>div.tab-menu>.tab-menu-ul > li {\n' +
         '            min-width: 100px;\n' +
         '            white-space: nowrap;\n' +
         '            overflow: hidden;\n' +
@@ -238,7 +237,7 @@ require(['components'], function (c) {
         '            color: #000;\n' +
         '        }\n' +
         '\n' +
-        '        div.tab-menu>ul.tab-menu-bg>li {\n' +
+        '        .tab-menus>div.tab-menu>ul.tab-menu-bg>li {\n' +
         '            opacity: 1;\n' +
         '            left: 0;\n' +
         '            position: absolute;\n' +
@@ -264,7 +263,7 @@ require(['components'], function (c) {
         '            color: #fff;\n' +
         '        }\n' +
         '\n' +
-        '        .tab-menus > div {\n' +
+        '        .tab-menus > div.tab-content>div {\n' +
         '            display: none;\n' +
         '        }\n' +
         '\n' +
@@ -272,7 +271,7 @@ require(['components'], function (c) {
         '            display: block;\n' +
         '        }\n' +
         '\n' +
-        '        .tab-menus div.show {\n' +
+        '        .tab-menus>div.tab-content>div.show {\n' +
         '            display: block;\n' +
         '        }\n');
 })
