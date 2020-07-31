@@ -17,25 +17,12 @@ define('components/tab/tab.tpl', ['handlebars'], function (h) {
                 name: "className",
                 hash: {},
                 data: a
-            }) : t)) + ((s = (l.ifDefaultTab || i && i.ifDefaultTab || d).call(r, i != null ? i.value : i, {
-                name: "ifDefaultTab",
-                hash: {},
-                fn: e.program(3, a, 0),
-                inverse: e.noop,
-                data: a
-            })) != null ? s : "") + '">' + c((t = (t = l.render || (i != null ? i.render : i)) != null ? t : d, typeof t === o ? t.call(r, {
-                name: "render",
-                hash: {},
-                data: a
-            }) : t)) + '</div>';
-        },
-        3: function () {
-            return " show";
+            }) : t)) + '"></div>';
         },
         compiler: [7, ">4.0.0"],
         main: function (e, i, l, n, a) {
             let s, r = i != null ? i : e.nullContext || {};
-            return '<div class="tab-menus">\n' +
+            return '<div class="tab-menus"><div class="tab-menu">\n' +
                 '        <ul class="tab-menu-bg">\n' +
                 '            <li class="tab-title-bg-blue"></li>\n' +
                 '            <li class="tab-title-bg-white"></li>\n' +
@@ -52,7 +39,7 @@ define('components/tab/tab.tpl', ['handlebars'], function (h) {
                             }
                         )
                     ) != null ? s : ""
-                ) + '</ul>' + (
+                ) + '</ul></div>' + (
                     (
                         s = l.each.call(r, i != null ? i.items : i,
                             {
@@ -65,70 +52,150 @@ define('components/tab/tab.tpl', ['handlebars'], function (h) {
                         )
                     ) != null ? s : ""
                 ) + '</div>';
-        }
+        },
+        useData: true
     });
 })
 define('tab', ['jquery', 'eventTarget', 'handlebars', 'components/tab/tab.tpl', 'components'], function (j, e, h, t, c) {
-    const version = "0.3.3";
-    let r = function (h) {
-        j.extend(this.prototype, c.getEl.call(this, h));
-        e.call(this);
-        d.call(this);
-        l.call(this);
-        f.call(this);
-    }
-    j.extend(r.prototype, e.prototype, {
-        version: version,
-        author: 'kangjun'
-    });
-    const d = function () {
-        h.registerHelper("ifDefaultTab", j.proxy(function (i) {
-            if (!!this.options.defaultTab) {
-                if (i === this.options.defaultTab.split(",")[0]) {
-                    return " show";
+        "use static";
+        const VERSION = "0.3.3";
+        let r = function (h) {
+            j.extend(this.prototype, c.getEl.call(this, h));
+            this.orginTab = [];
+            e.call(this);
+            l.call(this);
+            f.call(this);
+        }
+        j.extend(r.prototype, e.prototype, {
+            version: VERSION,
+            author: 'kangjun',
+            switchTab: function (t) {
+                const $el = this.$el;
+                let index = 0;
+                if (!!j('.tab-menus>div.' + t, $el).length > 0) {
+                    index = j('.tab-menus>div.' + t, $el).index() - 1;
+                } else if (typeof t === "number" || (typeof t === "string" && /^\d+$/.test(t)) && !isNaN(Number(t))) {
+                    index = Number(t);
+                    if (index >= this.orginTab.length) {
+                        return false;
+                    }
                 } else {
-                    return "";
+                    return false;
+                }
+                if (!!this.orginTab[index]) {
+                    w.call(j('ul.tab-menu-ul>li', $el).eq(index), $el);
+                } else {
+                    i.call(this, index);
                 }
             }
-        }, this));
-    }
-    const l = function () {
-        this.$el.html(t(this.options));
-        const $el = this.$el;
-        if (!!j('.tab-menus>div.show', $el)) {
-            j(j('.tab-menus>div', $el)[0]).addClass('show');
-        }
-        j('.tab-menus li', $el).each(function () {
-            j(this).mouseenter(function () {
-                const index = j(this).index();
-                move.call(j('.tab-menu-bg li.tab-title-bg-blue', $el), index);
-            }).mousedown(function () {
-                const index = j(this).index();
-                j('.tab-menu-ul li.checked', $el).removeClass("checked");
-                j(this).addClass("checked");
-                j('.tab-menus>div', $el).removeClass('show').eq(index).addClass('show');
-                move.call(j('.tab-menu-bg li.tab-title-bg-white', $el), index);
+        });
+        const l = function () {
+            this.$el.html(t(this.options));
+            const width = this.options.items.length * 150;
+            const p = s.call(this);
+            j('.tab-menus>div.tab-menu>ul.tab-menu-ul', this.$el).css('width', width + 'px');
+            i.call(this, p);
+            j('.tab-menus>div.tab-menu>ul.tab-menu-ul>li:eq(' + p + ')', this.$el).addClass('checked');
+        };
+        const s = function () {
+            const startPage = this.options.startPage;
+            let g = 0;
+            if (!!startPage) {
+                if (typeof startPage === "string" && /^\d+$/.test(startPage)) {
+                    g = Number(startPage);
+                } else if (typeof startPage === "number") {
+                    g = startPage;
+                }
+            }
+            if (isNaN(g) || g >= this.options.items.length) {
+                g = 0;
+            }
+            return g;
+        };
+        const f = function () {
+            const $el = this.$el;
+            j('.tab-menus>div.tab-menu>ul.tab-menu-ul li', $el).each(function () {
+                j(this).mouseenter(function () {
+                    const index = j(this).index();
+                    m.call($el, 'blue', index);
+                    j('ul.tab-menu-ul li.over', $el).removeClass('over');
+                    const tab = j('.tab-menu-ul li', $el).eq(index).addClass('over');
+                    const bg = j('.tab-menu-bg li.tab-title-bg-white', $el);
+                    if (tab.hasClass('checked')) {
+                        bg.addClass('over');
+                    } else {
+                        bg.removeClass('over');
+                    }
+                }).mousedown(function () {
+                    w.call(this, $el);
+                });
             });
-        });
-        j('.tab-menus>ul', $el).mouseleave(function () {
-            const index = j('.tab-menu-ul li.checked', $el).index();
-            move.call(j('.tab-menu-bg li.tab-title-bg-blue', $el), index);
-        });
+            j('.tab-menus>div.tab-menu>ul.tab-menu-ul', $el).mouseleave(function () {
+                j('div.tab-menu>ul li.over', $el).removeClass('over');
+                const index = j('.tab-menu-ul li.checked', $el).index();
+                m.call($el, 'blue', index);
+            });
 
-        function move(index) {
-            this.css('left', (index) * 150 + 'px');
+            const that = this;
+            j('.tab-menus>div.tab-menu>ul.tab-menu-ul>li:not(.checked)', $el).one('click', function (e) {
+                i.call(that, j(this).index());
+            });
+            $el.on('click', '.tab-menus>div.tab-menu>ul.tab-menu-ul>li', j.proxy(function (i) {
+                const data = that.options.items[j(i.target || i.currentTarget).closest("li").index()];
+                this.trigger('change', i, data);
+                if (data.click) {
+                    data.click(i, data);
+                }
+            }, this));
+        };
+        const w = function (e) {
+            j('ul.tab-menu-ul li.over', e).removeClass('over');
+            const index = j(this).index();
+            j('.tab-menu-ul li.checked', e).removeClass("checked");
+            j(this).addClass("checked");
+            j('.tab-menus>div', e).removeClass('show').eq(index + 1).addClass('show');
+            m.call(e, 'white', index);
+            m.call(e, 'blue', index);
         }
+        const i = function (d) {
+            let r = this.options.items[d].render;
+            r = !!r ? r(this.orginTab) : "";
+            const c = !!this.options.items[d].className ? this.options.items[d].className : "";
+            const $div = j('.tab-menus>div:not(.tab-menu):eq(' + d + ')', this.$el).addClass(c);
+            if (r instanceof jQuery) {
+                $div.append(r);
+                this.orginTab[d] = {content: $div};
+            } else if (typeof (r) !== 'object') {
+                this.orginTab[d] = {content: $div.html(r)};
+            } else if (typeof (r) === 'object') {
+                this.orginTab[d] = {content: $div.append(r.content)};
+            }
+            let i = 0;
+            j.each(this.orginTab, function (k) {
+                if (d + '' !== k) {
+                    i++;
+                } else {
+                    return false;
+                }
+            });
+            j('.tab-menus>div.show', this.$el).removeClass('show');
+            $div.addClass(c).addClass('show');
+            // j('.tab-menus>div:eq(' + i + ')', this.$el).after(this.orginTab[d].content);
+            m.call(this.$el, 'white', d);
+            m.call(this.$el, 'blue', d);
+        };
+        const m = function (b, i) {
+            j('.tab-menu-bg li.tab-title-bg-' + b, this).css('left', (i) * 150 + 'px');
+        };
+        return r;
     }
-    const f = function () {
-        this.$el.on('click', '.tab-menus>div', e.proxy(function (i) {
-            this.trigger('change', e);
-        }, this));
-    }
-    return r;
-});
+);
 require(['components'], function (c) {
     c.insertStyle('        .tab-menus {\n' +
         '            margin: auto;\n' +
+        '            position: absolute;\n' +
+        '            width: inherit;\n' +
+        '            height: inherit;\n' +
         '            border: 1px solid #009fe9;\n' +
         '        }\n' +
         '\n' +
@@ -149,10 +216,10 @@ require(['components'], function (c) {
         '        }\n' +
         '\n' +
         '        .tab-menus ul.tab-menu-ul {\n' +
-        '            top: -42px\n' +
+        '            position: fixed;\n' +
         '        }\n' +
         '\n' +
-        '        .tab-menus li {\n' +
+        '        .tab-menus>.tab-menu li {\n' +
         '            list-style: none;\n' +
         '            width: 140px;\n' +
         '            padding: 0 5px;\n' +
@@ -171,7 +238,8 @@ require(['components'], function (c) {
         '            color: #000;\n' +
         '        }\n' +
         '\n' +
-        '        .tab-menus>.tab-menu-bg>li {\n' +
+        '        div.tab-menu>ul.tab-menu-bg>li {\n' +
+        '            opacity: 1;\n' +
         '            left: 0;\n' +
         '            position: absolute;\n' +
         '            -webkit-transition: all .5s;\n' +
@@ -180,16 +248,28 @@ require(['components'], function (c) {
         '            transition: all .5s\n' +
         '        }\n' +
         '\n' +
-        '        .tab-menus .tab-title-bg-blue {\n' +
+        '        div.tab-menu>ul.tab-menu-bg>li.tab-title-bg-blue {\n' +
         '            background: #009fe9;\n' +
         '        }\n' +
         '\n' +
-        '        .tab-menus .tab-title-bg-white {\n' +
+        '        div.tab-menu>ul.tab-menu-bg>li.tab-title-bg-white {\n' +
         '            background: #fff;\n' +
+        '        }\n' +
+        '\n' +
+        '        div.tab-menu>ul.tab-menu-bg>li.over {\n' +
+        '            opacity: 0;\n' +
+        '        }\n' +
+        '\n' +
+        '        div.tab-menu>ul.tab-menu-ul>li.over {\n' +
+        '            color: #fff;\n' +
         '        }\n' +
         '\n' +
         '        .tab-menus > div {\n' +
         '            display: none;\n' +
+        '        }\n' +
+        '\n' +
+        '        .tab-menus >div.tab-menu{\n' +
+        '            display: block;\n' +
         '        }\n' +
         '\n' +
         '        .tab-menus div.show {\n' +

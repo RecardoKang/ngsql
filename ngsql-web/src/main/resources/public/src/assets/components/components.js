@@ -23,13 +23,8 @@ define("components", ['jquery'], function (j) {
             } else {
                 this.$el = j("<div></div>")
             }
-            let id = l.el;
-            id = id.replace(new RegExp("\\.", "g"), "_");
-            id = id.replace(new RegExp("#", "g"), "_");
-            id = id.replace(new RegExp("\\[", "g"), "_");
-            id = id.replace(new RegExp("]", "g"), "_");
-            id = id.replace(new RegExp("\\(", "g"), "_");
-            id = id.replace(new RegExp("\\)", "g"), "_");
+            let id = !!l.el ? l.el : "";
+            id = id.replace(new RegExp("\\.|#|\\[|]\\(|\\)", "g"), "") + "-id" + Math.floor(Math.random() * 1000000 + 1);
             l.id = id;
             if (l.type !== "checkbox") {
                 l.type = "radio"

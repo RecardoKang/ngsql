@@ -23,11 +23,11 @@ define("lib/checkbox/tpl/checkbox.tpl", ['handlebars'], function (e) {
                 name: "value",
                 hash: {},
                 data: a
-            }) : t)) + '" id="checkbox-' + a.root.id + c((t = (t = l.value || (i != null ? i.value : i)) != null ? t : d, typeof t === o ? t.call(r, {
+            }) : t)) + '" id="checkbox' + a.root.id + c((t = (t = l.value || (i != null ? i.value : i)) != null ? t : d, typeof t === o ? t.call(r, {
                 name: "value",
                 hash: {},
                 data: a
-            }) : t)) + '">\r\n<label for="checkbox-' + a.root.id + c((t = (t = l.value || (i != null ? i.value : i)) != null ? t : d, typeof t === o ? t.call(r, {
+            }) : t)) + '">\r\n<label for="checkbox' + a.root.id + c((t = (t = l.value || (i != null ? i.value : i)) != null ? t : d, typeof t === o ? t.call(r, {
                 name: "value",
                 hash: {},
                 data: a
@@ -136,7 +136,7 @@ define("checkbox", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/che
         if (!!i) {
             const a = i.split(",");
             e.each(a, function (i, a) {
-                const n = e("#checkbox-" + id + a, l);
+                const n = e("#checkbox" + id + a, l);
                 n.prop(prop, flag)
             })
         } else {
