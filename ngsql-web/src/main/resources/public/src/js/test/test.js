@@ -112,7 +112,7 @@ require(['tab','checkbox'], function (Tab,Checkbox) {
             direction:'vertical',
             items: [
                 {
-                    title: 'tab1',
+                    title: '',
                     className: 'tab',
                     render: function () {
                         return new Checkbox({

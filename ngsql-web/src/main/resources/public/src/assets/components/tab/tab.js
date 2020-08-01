@@ -1,23 +1,11 @@
 define('components/tab/tab.tpl', ['handlebars'], function (h) {
     return h.template({
-        1: function (e, i, l, n, a) {
-            let t, r = i != null ? i : e.nullContext || {}, d = l.helperMissing, o = "function",
-                c = e.escapeExpression,
-                title = c((t = (t = l.title || (i != null ? i.title : i)) != null ? t : d, typeof t === o ? t.call(r, {
-                    name: "title",
-                    hash: {},
-                    data: a
-                }) : t));
+        1: function (e, i) {
+            const title = (!!i.className ? i.className : "tab");
             return '<li title="' + title + '"><span>' + title + '</span></li>';
         },
-        2: function (e, i, l, n, a) {
-            let t, r = i != null ? i : e.nullContext || {}, d = l.helperMissing, o = "function",
-                c = e.escapeExpression;
-            return '<div class="' + c((t = (t = l.className || (i != null ? i.className : i)) != null ? t : d, typeof t === o ? t.call(r, {
-                name: "className",
-                hash: {},
-                data: a
-            }) : t)) + '"></div>';
+        2: function (e, i) {
+            return '<div class="' + (!!i.className ? i.className : "") + '"></div>';
         },
         compiler: [7, ">4.0.0"],
         main: function (e, i, l, n, a) {
@@ -199,109 +187,91 @@ define('tab', ['jquery', 'eventTarget', 'handlebars', 'components/tab/tab.tpl', 
 );
 require(['components'], function (c) {
     c.insertStyle(
-        '        .tab-menus.horizontal > div.tab-menu > ul {\n' +
-        '            height: 42px;\n' +
-        '            width: 100%;\n' +
-        '        }\n' +
+        '.tab-menus.horizontal > div.tab-menu > ul {\n' +
+        '    height: 42px;\n' +
+        '    width: 100%;\n' +
+        '}\n' +
+        '.tab-menus.vertical > div.tab-menu > ul.tab-menu-bg {\n' +
+        '    height: inherit;\n' +
+        '    width: 150px;\n' +
+        '}\n' +
+        '.tab-menus.vertical > div.tab-menu > ul.tab-menu-ul {\n' +
+        '    width: 150px;\n' +
+        '}\n' +
+        '.tab-menus.vertical > div.tab-menu {\n' +
+        '    height: inherit;\n' +
+        '    float: left;\n' +
+        '}\n' +
+        '.tab-menus {\n' +
+        '    margin: auto;\n' +
+        '    position: absolute;\n' +
+        '    width: inherit;\n' +
+        '    height: inherit;\n' +
+        '    border: 1px solid #009fe9;\n' +
+        '}\n' +
+        '.tab-menus > div.tab-content {\n' +
+        '    height: 100%;\n' +
+        '}\n' +
+        '.tab-menus > div.tab-menu > ul {\n' +
+        '    float: left;\n' +
+        '    margin: 0;\n' +
+        '    padding: 0;\n' +
+        '    min-width: 150px;\n' +
+        '    overflow: hidden;\n' +
+        '}\n' +
+        '.tab-menus > div.tab-menu > ul.tab-menu-bg {\n' +
+        '    z-index: -1;\n' +
+        '    background-color: #009fe977;\n' +
+        '    position: relative;\n' +
+        '}\n' +
+        '.tab-menus > div.tab-menu > ul.tab-menu-ul {\n' +
+        '    position: absolute;\n' +
+        '}\n' +
+        '.tab-menus > div.tab-menu > ul > li {\n' +
+        '    list-style: none;\n' +
+        '    width: 140px;\n' +
+        '    padding: 0 5px;\n' +
+        '    float: left;\n' +
+        '    height: auto;\n' +
+        '}\n' +
+        '.tab-menus > div.tab-menu > ul.tab-menu-ul > li {\n' +
+        '    min-width: 100px;\n' +
+        '    white-space: nowrap;\n' +
+        '    overflow: hidden;\n' +
+        '    text-overflow: ellipsis;\n' +
+        '    line-height: 42px;\n' +
+        '    text-align: center;\n' +
+        '    cursor: pointer;\n' +
+        '    color: #000;\n' +
+        '}\n' +
+        '.tab-menus > div.tab-menu > ul.tab-menu-bg > li {\n' +
+        '    opacity: 1;\n' +
+        '    left: 0;\n' +
+        '    height: 42px;\n' +
+        '    position: absolute;\n' +
+        '    -webkit-transition: all .5s;\n' +
+        '    -moz-transition: all .5s;\n' +
+        '    -o-transition: all .5s;\n' +
+        '    transition: all .5s\n' +
+        '}\n' +
+        'div.tab-menu > ul.tab-menu-bg > li.tab-title-bg-blue {\n' +
+        '    background: #009fe9;\n' +
+        '}\n' +
         '\n' +
-        '        .tab-menus.vertical > div.tab-menu > ul.tab-menu-bg {\n' +
-        '            height: inherit;\n' +
-        '            width: 150px;\n' +
-        '        }\n' +
-        '\n' +
-        '        .tab-menus.vertical > div.tab-menu > ul.tab-menu-ul {\n' +
-        '            width: 150px;\n' +
-        '        }\n' +
-        '\n' +
-        '        .tab-menus.vertical > div.tab-menu {\n' +
-        '            height: inherit;\n' +
-        '            float: left;\n' +
-        '        }\n' +
-        '\n' +
-        '        /**/\n' +
-        '        .tab-menus {\n' +
-        '            margin: auto;\n' +
-        '            position: absolute;\n' +
-        '            width: inherit;\n' +
-        '            height: inherit;\n' +
-        '            border: 1px solid #009fe9;\n' +
-        '        }\n' +
-        '\n' +
-        '        .tab-menus > div.tab-content {\n' +
-        '            height: 100%;\n' +
-        '        }\n' +
-        '\n' +
-        '        .tab-menus > div.tab-menu > ul {\n' +
-        '            float: left;\n' +
-        '            margin: 0;\n' +
-        '            padding: 0;\n' +
-        '            min-width: 150px;\n' +
-        '            overflow: hidden;\n' +
-        '        }\n' +
-        '\n' +
-        '        .tab-menus > div.tab-menu > ul.tab-menu-bg {\n' +
-        '            z-index: -1;\n' +
-        '            background-color: #009fe977;\n' +
-        '            position: relative;\n' +
-        '        }\n' +
-        '\n' +
-        '        .tab-menus > div.tab-menu > ul.tab-menu-ul {\n' +
-        '            position: absolute;\n' +
-
-        '        }\n' +
-        '\n' +
-        '        .tab-menus > div.tab-menu > ul > li {\n' +
-        '            list-style: none;\n' +
-        '            width: 140px;\n' +
-        '            padding: 0 5px;\n' +
-        '            float: left;\n' +
-        '            height: auto;\n' +
-        '        }\n' +
-        '\n' +
-        '        .tab-menus > div.tab-menu > ul.tab-menu-ul > li {\n' +
-        '            min-width: 100px;\n' +
-        '            white-space: nowrap;\n' +
-        '            overflow: hidden;\n' +
-        '            text-overflow: ellipsis;\n' +
-        '            line-height: 42px;\n' +
-        '            text-align: center;\n' +
-        '            cursor: pointer;\n' +
-        '            color: #000;\n' +
-        '        }\n' +
-        '\n' +
-        '        .tab-menus > div.tab-menu > ul.tab-menu-bg > li {\n' +
-        '            opacity: 1;\n' +
-        '            left: 0;\n' +
-        '            height: 42px;\n' +
-        '            position: absolute;\n' +
-        '            -webkit-transition: all .5s;\n' +
-        '            -moz-transition: all .5s;\n' +
-        '            -o-transition: all .5s;\n' +
-        '            transition: all .5s\n' +
-        '        }\n' +
-        '\n' +
-        '        div.tab-menu > ul.tab-menu-bg > li.tab-title-bg-blue {\n' +
-        '            background: #009fe9;\n' +
-        '        }\n' +
-        '\n' +
-        '        div.tab-menu > ul.tab-menu-bg > li.tab-title-bg-white {\n' +
-        '            background: #fff;\n' +
-        '        }\n' +
-        '\n' +
-        '        div.tab-menu > ul.tab-menu-bg > li.over {\n' +
-        '            opacity: 0;\n' +
-        '        }\n' +
-        '\n' +
-        '        div.tab-menu > ul.tab-menu-ul > li.over {\n' +
-        '            color: #fff;\n' +
-        '        }\n' +
-        '\n' +
-        '        .tab-menus > div.tab-content > div {\n' +
-        '            display: none;\n' +
-        '        }\n' +
-        '\n' +
-        '        .tab-menus > div.tab-content > div.show {\n' +
-        '            display: block;\n' +
-        '        }\n'
+        'div.tab-menu > ul.tab-menu-bg > li.tab-title-bg-white {\n' +
+        '    background: #fff;\n' +
+        '}\n' +
+        'div.tab-menu > ul.tab-menu-bg > li.over {\n' +
+        '    opacity: 0;\n' +
+        '}\n' +
+        'div.tab-menu > ul.tab-menu-ul > li.over {\n' +
+        '    color: #fff;\n' +
+        '}\n' +
+        '.tab-menus > div.tab-content > div {\n' +
+        '    display: none;\n' +
+        '}\n' +
+        '.tab-menus > div.tab-content > div.show {\n' +
+        '    display: block;\n' +
+        '}\n'
     );
 })
