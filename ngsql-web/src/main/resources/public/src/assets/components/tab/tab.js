@@ -1,7 +1,7 @@
 define('components/tab/tab.tpl', ['handlebars'], function (h) {
     return h.template({
         1: function (e, i) {
-            const title = (!!i.className ? i.className : "tab");
+            const title = (!!i.title ? i.title : "tab");
             return '<li title="' + title + '"><span>' + title + '</span></li>';
         },
         2: function (e, i) {
@@ -57,25 +57,66 @@ define('tab', ['jquery', 'eventTarget', 'handlebars', 'components/tab/tab.tpl', 
             version: VERSION,
             author: 'kangjun',
             switchTab: function (t) {
-                const $el = this.$el;
-                let index = 0;
-                if (!!j('.tab-menus>div.tab-content>div.' + t, $el).length > 0) {
-                    index = j('.tab-menus>div.tab-content>div.' + t, $el).index() - 1;
-                } else if (typeof t === "number" || (typeof t === "string" && /^\d+$/.test(t)) && !isNaN(Number(t))) {
-                    index = Number(t);
-                    if (index > this.orginTab.length) {
-                        return false;
-                    }
-                } else {
-                    return false;
+                const n = u.call(this, t);
+                if (0 <= n < j('.tab-menus>div.tab-menu>ul.tab-menu-ul>li', this.$el).length) {
+                    i.call(this, n);
                 }
-                if (!!this.orginTab[index]) {
-                    w.call(j('ul.tab-menu-ul>li', $el).eq(index), $el);
-                } else {
-                    i.call(this, index);
+            },
+            destroyTab: function (t) {
+                const n = u.call(this, t);
+                if (n >= 0) {
+                    const c = j('.tab-menus>div.tab-menu>ul.tab-menu-ul>li.checked', this.$el).index();
+                    const d = j('.tab-menus>div.tab-menu>ul.tab-menu-ul>li', this.$el).length;
+                    if (c === n || n === d - 1) {
+                        i.call(this, c - 1);
+                        m.call(this.$el, 'white', c - 1);
+                        m.call(this.$el, 'blue', c - 1);
+                    } else if (c > n) {
+                        m.call(this.$el, 'white', c - 1);
+                        m.call(this.$el, 'blue', c - 1);
+                    }
+                    j('ul.tab-menu-ul>li', this.$el).eq(n).remove();
+                    j('div.tab-content>div', this.$el).eq(n).remove();
+                    let l = [];
+                    if (this.orginTab.length > 0 && this.orginTab[n]) {
+                        j.each(this.orginTab, function (k, v) {
+                            if (!!v) {
+                                if (k < n) {
+                                    t[k] = v;
+                                } else if (k > n) {
+                                    l[k - 1] = v;
+                                }
+                            }
+                        });
+                    }
+                    this.orginTab = l;
                 }
             }
         });
+        const u = function (t) {
+            const n = t + '';
+            const $el = this.$el;
+            let index;
+            if (/^[0-9]*$/.test(n) && n < j('.tab-menus>div.tab-menu>ul.tab-menu-ul>li', this.$el).length) {
+                index = Number(n);
+            } else {
+                index = v.call(this);
+                if (!!!index && !!j('.tab-menus>div.tab-content>div.' + n, $el).length > 0) {
+                    index = j('.tab-menus>div.tab-content>div.' + n, $el).index() - 1;
+                } else {
+                    return -1;
+                }
+            }
+            return index;
+        }
+        const v = function (t) {
+            j.each(j('.tab-menus>div.tab-menu>ul.tab-menu-ul>li>span', this.$el), function (k, v) {
+                if (t === j(v).text()) {
+                    return k;
+                }
+            });
+            return false;
+        }
         const n = function () {
             if (!!!this.options.direction || this.options.direction !== 'vertical') {
                 this.options.direction = "horizontal";
@@ -148,31 +189,36 @@ define('tab', ['jquery', 'eventTarget', 'handlebars', 'components/tab/tab.tpl', 
             m.call(e, 'white', index);
             m.call(e, 'blue', index);
         }
+        l
         const i = function (d) {
-            let r = this.options.items[d].render;
-            r = !!r ? r(this.orginTab) : "";
-            const c = !!this.options.items[d].className ? this.options.items[d].className : "";
-            const $div = j('.tab-menus>div.tab-content>div', this.$el).eq(d).addClass(c);
-            if (r instanceof jQuery) {
-                $div.append(r);
-                this.orginTab[d] = {content: $div};
-            } else if (typeof (r) !== 'object') {
-                this.orginTab[d] = {content: $div.html(r)};
-            } else if (typeof (r) === 'object') {
-                this.orginTab[d] = {content: $div.append(r.content)};
-            }
-            let i = 0;
-            j.each(this.orginTab, function (k) {
-                if (d + '' !== k) {
-                    i++;
-                } else {
-                    return false;
+            if (!!this.orginTab[d]) {
+                w.call(j('ul.tab-menu-ul>li', this.$el).eq(d), this.$el);
+            } else {
+                let r = this.options.items[d].render;
+                r = !!r ? r(this.orginTab) : "";
+                const c = !!this.options.items[d].className ? this.options.items[d].className : "";
+                const $div = j('.tab-menus>div.tab-content>div', this.$el).eq(d).addClass(c);
+                if (r instanceof jQuery) {
+                    $div.append(r);
+                    this.orginTab[d] = {content: $div};
+                } else if (typeof (r) !== 'object') {
+                    this.orginTab[d] = {content: $div.html(r)};
+                } else if (typeof (r) === 'object') {
+                    this.orginTab[d] = {content: $div.append(r.content)};
                 }
-            });
-            j('.tab-menus>div.tab-content>div.show', this.$el).removeClass('show');
-            $div.addClass(c).addClass('show');
-            m.call(this.$el, 'white', d);
-            m.call(this.$el, 'blue', d);
+                let i = 0;
+                j.each(this.orginTab, function (k) {
+                    if (d + '' !== k) {
+                        i++;
+                    } else {
+                        return false;
+                    }
+                });
+                j('.tab-menus>div.tab-content>div.show', this.$el).removeClass('show');
+                $div.addClass(c).addClass('show');
+                m.call(this.$el, 'white', d);
+                m.call(this.$el, 'blue', d);
+            }
         };
         const m = function (b, i) {
             const bg = j('.tab-menu-bg li.tab-title-bg-' + b, this);
