@@ -166,8 +166,12 @@ require(['components'], function (c) {
         '    width: 150px;\n' +
         '}\n' +
         '.tab-menus.vertical > div.tab-menu {\n' +
-        '    height: inherit;\n' +
+        '    height: 100%;\n' +
         '    float: left;\n' +
+        '}\n' +
+        '.tab-menus.vertical > div.tab-content {\n' +
+        '    min-width: 150px;\n' +
+        '    margin-left: 150px;\n' +
         '}\n' +
         '.tab-menus {\n' +
         '    margin: auto;\n' +

@@ -2,9 +2,29 @@
 <html lang="zh-cn">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"/>
     <title>组件说明</title>
+    <style>
+        #content {
+            width: 99%;
+            height: 96%;
+        }
+
+        #content .components-detail {
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
 组件说明
+<button>返回</button>
+<div class="t-panel">
+    <div id="content"></div>
+</div>
+<script src="../../assets/common/require.js"></script>
+<script src="../../assets/common/requireMain.js"></script>
+<script src="../../js/components/components.js"></script>
+<script id="components-detail-tpl" type="text/x-handlebars-template" src="../../tpl/components/components.tpl"></script>
 </body>
 </html>
