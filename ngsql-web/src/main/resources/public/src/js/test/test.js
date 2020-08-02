@@ -89,7 +89,7 @@ require(['tab', 'checkbox'], function (Tab, Checkbox) {
                     render: function () {
                         const a = $('<a href="javascript:">跳转到第一页</a>');
                         a.on('click', function () {
-                            tab.switchTab("0");
+                            tab.switchTab("tab");
                         })
                         return a;
                     }
@@ -112,7 +112,7 @@ require(['tab', 'checkbox'], function (Tab, Checkbox) {
             direction: 'vertical',
             items: [
                 {
-                    title: '',
+                    title: 'radio',
                     className: 'tab',
                     render: function () {
                         return new Checkbox({
@@ -136,7 +136,7 @@ require(['tab', 'checkbox'], function (Tab, Checkbox) {
                     }
                 },
                 {
-                    title: 'tab2',
+                    title: 'delete1',
                     className: 'tab2',
                     render: function () {
                         const a = $('<a href="javascript:">删除第一页</a>');
@@ -149,20 +149,37 @@ require(['tab', 'checkbox'], function (Tab, Checkbox) {
                         console.log("点击了tab2");
                     }
                 }, {
-                    title: 'tab3',
+                    title: 'delete234',
                     render: function () {
-                        const a = $('<a href="javascript:">跳转到第四页</a>');
+                        const a = $('<a href="javascript:" class="delete2">删除第2页</a><a href="javascript:" class="delete3">删除第3页</a><a href="javascript:" class="delete4">删除第4页</a>');
+                        a.eq(0).on('click', function () {
+                            tab2.destroyTab("1");
+                        });
+                        a.eq(1).on('click', function () {
+                            tab2.destroyTab("2");
+                        });
+                        a.eq(2).on('click', function () {
+                            tab2.destroyTab("3");
+                        });
+                        return a;
+                    }
+                }, {
+                    title: 'delete1',
+                    render: function () {
+                        const a = $('<a href="javascript:">删除第一页</a>');
                         a.on('click', function () {
-                            tab2.switchTab("3");
+                            tab2.destroyTab("0");
                         })
                         return a;
                     }
                 }, {
-                    title: 'tab4',
+                    title: 'delete5',
                     render: function () {
-                        return "<div>\n" +
-                            "                <img src=\"../../assets/img/link/home.ico\"/>\n" +
-                            "            </div>";
+                        const a = $('<a href="javascript:">删除第五页</a>');
+                        a.on('click', function () {
+                            tab2.destroyTab("4");
+                        })
+                        return a;
                     }
                 }
             ]
