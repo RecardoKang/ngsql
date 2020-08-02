@@ -103,7 +103,7 @@ define('tab', ['jquery', 'eventTarget', 'handlebars', 'components/tab/tab.tpl', 
                     j(li + '.over', e).removeClass('over');
                     const tab = j(li, e).eq(index).addClass('over');
                     const bg = j('.tab-menu-bg li.tab-title-bg-white', e);
-                    if (tab.hasClass('checked')) bg.addClass('over');
+                    if (tab.hasClass('checked')) bg.addClass('over'); else bg.removeClass('over');
                 }).mousedown(function () {
                     i.call(that, j(this).index());
                 });
