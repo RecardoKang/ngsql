@@ -8,7 +8,7 @@
 <div class="components-detail">
     <h1>
         {{componentsName}}
-        <small id="version">{{version}}</small>
+        <small id="version">({{version}})</small>
         <span>
             <a>{{author}}</a>
         </span>
