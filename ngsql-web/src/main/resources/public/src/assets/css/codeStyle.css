@@ -1,0 +1,49 @@
+/*字体*/
+code.github {
+    font-family: JetBrains Mono, Consolas, serif;
+}
+
+@font-face {
+    font-family: JetBrains Mono;
+    src: url("../../assets/font/JetBrainsMono-Regular.ttf");
+}
+
+/*普通代码*/
+code.github .val {
+    color: #24292E;
+}
+
+/*字符串*/
+code.github .str {
+    color: #032F62;
+}
+
+/*关键字*/
+code.github .key {
+    color: #D73A49;
+}
+
+/*注释*/
+code.github .note {
+    color: #6A737D;
+}
+
+/*数字*/
+code.github .num {
+    color: #005CC5;
+}
+
+/*方法*/
+code.github .fun {
+    color: #6F42C1;
+}
+
+/*入参、类名*/
+code.github .param {
+    color: #E36209;
+}
+
+/*标签*/
+code.github .tag {
+    color: #22863A;
+}

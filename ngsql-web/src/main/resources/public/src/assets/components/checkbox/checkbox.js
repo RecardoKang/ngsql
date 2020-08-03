@@ -145,11 +145,16 @@ define("checkbox_function", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbo
 });
 define('checkbox', ['jquery', 'components', 'checkbox_function'], function (j, c, t) {
     j.extend(t.prototype, c.temp, {
+        //这是一段注释
         componentsName: '选择框',
         version: '1.2.4',
         author: '<span style="color: red">kangjun</span>',
         componentsExample:
-            new t({title: '性别', items: [{label: '男', name: 'man'}, {label: "女", name: 'woman'}]}).$el.html(),
+            new t({title: '单选框', items: [{label: '男', name: 'man'}, {label: "女", name: 'woman'}]}).$el.html() + '<br>' +
+            new t({
+                title: '复选框', type: 'checkbox',
+                items: [{label: '中国', name: 'china'}, {label: "日本", name: 'japan'}, {label: "美国", name: 'american'}]
+            }).$el.html(),
         componentsDetail: '根据配置，在页面生成一个单选或多选的复选框。'
     });
     return t;

@@ -30,11 +30,9 @@ define("components", ['jquery'], function (j) {
             this.options = l;
             return this
         }, temp: {
-            componentsName: '',
             version: '1.0.0',
             author: 'kangjun',
-            componentsExample: '暂未提供',
-            componentsDetail: '暂未提供',
+            fun: [{name: 'version', code: '<span class="key">var</span> version <span class="key">=</span> checkbox.version;<span class="note">//获取版本号</span>'}]
         }
     })
 });
