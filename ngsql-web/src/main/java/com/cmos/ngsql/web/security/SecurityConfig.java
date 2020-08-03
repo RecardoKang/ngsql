@@ -25,7 +25,7 @@ import org.springframework.stereotype.Controller;
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests() // 定义哪些URL需要被保护、哪些不需要被保护
-                .antMatchers("/src/assets/css/**", "/login").permitAll()// 设置所有人都可以访问登录页面
+                .antMatchers("/src/assets/css/**", "/src/assets/common/jquery.js", "/login").permitAll()// 设置所有人都可以访问登录页面
                 .anyRequest().authenticated()  // 任何请求,登录后可以访问
                 .and()
                 .formLogin().loginPage("/login")
