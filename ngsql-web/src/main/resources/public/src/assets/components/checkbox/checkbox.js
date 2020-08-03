@@ -155,7 +155,8 @@ define('checkbox', ['jquery', 'components', 'checkbox_function'], function (j, c
                 title: '复选框', type: 'checkbox',
                 items: [{label: '中国', name: 'china'}, {label: "日本", name: 'japan'}, {label: "美国", name: 'american'}]
             }).$el.html(),
-        componentsDetail: '根据配置，在页面生成一个单选或多选的复选框。'
+        componentsDetail: '根据配置，在页面生成一个单选或多选的复选框。',
+        componentsCode: c.code('var a = b;//for test\nlet c = d + f;//ddd\nconst e = new tab//测试\nrender:function(){}\n <a class="a"></a>')
     });
     return t;
 });

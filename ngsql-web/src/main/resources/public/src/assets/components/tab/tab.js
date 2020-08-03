@@ -154,7 +154,8 @@ define('tab', ['jquery', 'components', 'tab_function'], function (j, c, t) {
         componentsName: '选项卡',
         version: '1.2.3',
         author: 'kangjun',
-        componentsDetail: '根据配置，在前端页面生成一个横向或纵向的选项卡。'
+        componentsDetail: '根据配置，在前端页面生成一个横向或纵向的选项卡。',
+        componentsCode: c.code('this is a testing line//for test\n')
     });
     return t;
 });

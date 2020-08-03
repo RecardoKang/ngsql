@@ -32,7 +32,22 @@ define("components", ['jquery'], function (j) {
         }, temp: {
             version: '1.0.0',
             author: 'kangjun',
-            fun: [{name: 'version', code: '<span class="key">var</span> version <span class="key">=</span> checkbox.version;<span class="note">//获取版本号</span>'}]
+            fun: [{
+                name: 'version',
+                code: '<span class="key">var</span> version <span class="key">=</span> checkbox.version;<span class="note">//获取版本号</span>'
+            }]
+        }, code: function (s) {
+            if (typeof s === "string" && s.length > 0) {
+                return s
+                    .replace(new RegExp("(<)", 'g'), '&lt;')
+                    .replace(new RegExp("</", 'g'), '<span class="key">&lt;/</span>')
+                    .replace(new RegExp(">", 'g'), '<span class="key">&gt;</span>')
+                    .replace(new RegExp('(var|let|const|return|new|function|:|!)', 'g'), '<span class="key">$1</span\>')
+                    .replace(new RegExp('(render|click|log)', 'g'), '<span class="fun">$1</span\>')
+                    .replace(new RegExp('(//(.*))', 'g'), '<span class="note">$1</span\>')
+                    .replace(new RegExp('\n', 'g'), "<br>")
+                    ;
+            }
         }
     })
 });
