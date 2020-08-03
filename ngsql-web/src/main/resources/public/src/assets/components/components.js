@@ -33,7 +33,8 @@ define("components", ['jquery'], function (j) {
             componentsName: '',
             version: '1.0.0',
             author: 'kangjun',
-            componentsDetail: '组件',
+            componentsExample: '暂未提供',
+            componentsDetail: '暂未提供',
         }
     })
 });

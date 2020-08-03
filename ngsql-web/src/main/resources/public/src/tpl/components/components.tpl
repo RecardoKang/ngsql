@@ -29,12 +29,12 @@
 
     </h1>
     <div>
+        <h2>示例</h2>
         {{{componentsExample}}}
     </div>
     <h1>
         介绍
     </h1>
-    <h1> 使用示例 </h1>
     <p>
         {{{componentsDetail}}}
     </p>

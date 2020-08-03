@@ -146,7 +146,7 @@ define("checkbox_function", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbo
 define('checkbox', ['jquery', 'components', 'checkbox_function'], function (j, c, t) {
     j.extend(t.prototype, c.temp, {
         componentsName: '选择框',
-        version: '1.2.3',
+        version: '1.2.4',
         author: '<span style="color: red">kangjun</span>',
         componentsExample:
             new t({title: '性别', items: [{label: '男', name: 'man'}, {label: "女", name: 'woman'}]}).$el.html(),
@@ -155,5 +155,5 @@ define('checkbox', ['jquery', 'components', 'checkbox_function'], function (j, c
     return t;
 });
 require(['components'], function (c) {
-    c.insertStyle("        .checkboxStyle input {\n            display: none\n        }\n\n        .checkboxStyle > .Block-PaddingL > li {\n            list-style-type: none;display: inline-block;\n        }\n\n        .checkboxStyle > .Block-PaddingL > li > label {\n            border: 1px solid #CCC;\n            color: #666;\n            padding: 2px 10px 2px 5px;\n            line-height: 28px;\n            min-width: 80px;\n            text-align: center;\n            float: left;\n            margin: 2px;\n            border-radius: 4px\n        }\n\n        .checkboxStyle > .Block-PaddingL > li input:checked + label {\n            background: url(../../assets/lib/checkbox/img/ico_checkbox_on.svg) no-repeat right bottom;\n            border: 1px solid #00a4ff;\n            background-size: 21px 21px;\n            color: #00a4ff\n        }\n\n        .checkboxStyle > .Block-PaddingL > li input:disabled + label {\n            opacity: 0.5;\n        }\n\n        .checkboxStyle > .Block-PaddingL > li.title > label{\n            border: none;\n            color: black;\n            font-weight: bold;\n            min-width: auto;\n        }\n")
+    c.insertStyle("        .checkboxStyle {display:inline-block} .checkboxStyle > .Block-PaddingL { display:inline-block } .checkboxStyle input {\n            display: none\n        }\n\n        .checkboxStyle > .Block-PaddingL > li {\n            list-style-type: none;display: inline-block;\n        }\n\n        .checkboxStyle > .Block-PaddingL > li > label {\n            border: 1px solid #CCC;\n            color: #666;\n            padding: 2px 10px 2px 5px;\n            line-height: 28px;\n            min-width: 80px;\n            text-align: center;\n            float: left;\n            margin: 2px;\n            border-radius: 4px\n        }\n\n        .checkboxStyle > .Block-PaddingL > li input:checked + label {\n            background: url(../../assets/lib/checkbox/img/ico_checkbox_on.svg) no-repeat right bottom;\n            border: 1px solid #00a4ff;\n            background-size: 21px 21px;\n            color: #00a4ff\n        }\n\n        .checkboxStyle > .Block-PaddingL > li input:disabled + label {\n            opacity: 0.5;\n        }\n\n        .checkboxStyle > .Block-PaddingL > li.title > label{\n            border: none;\n            color: black;\n            font-weight: bold;\n            min-width: auto;\n        }\n")
 });
