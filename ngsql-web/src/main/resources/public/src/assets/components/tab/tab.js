@@ -20,10 +20,9 @@ define('components/tab/tab.tpl', ['handlebars'], function (h) {
         },
         useData: true
     });
-})
-define('tab', ['jquery', 'eventTarget', 'handlebars', 'components/tab/tab.tpl', 'components'], function (j, e, h, t, c) {
+});
+define('tab_function', ['jquery', 'eventTarget', 'handlebars', 'components/tab/tab.tpl', 'components'], function (j, e, h, t, c) {
         "use static";
-        const VERSION = "0.3.3";
         const li = '.tab-menus>div.tab-menu>ul.tab-menu-ul>li';
         const div = '.tab-menus>div.tab-content>div';
         let r = function (h) {
@@ -33,8 +32,6 @@ define('tab', ['jquery', 'eventTarget', 'handlebars', 'components/tab/tab.tpl', 
             f.call(this);
         }
         j.extend(r.prototype, e.prototype, {
-            version: VERSION,
-            author: 'kangjun',
             switchTab: function (t, p) {
                 const n = u.call(this, t, p);
                 if (0 <= n < j(li, this.$el).length) i.call(this, n);
@@ -152,6 +149,15 @@ define('tab', ['jquery', 'eventTarget', 'handlebars', 'components/tab/tab.tpl', 
         return r;
     }
 );
+define('tab', ['jquery', 'components', 'tab_function'], function (j, c, t) {
+    j.extend(t.prototype, c.temp, {
+        componentsName: '选项卡',
+        version: '1.2.3',
+        author: 'kangjun',
+        componentsDetail: '根据配置，在前端页面生成一个横向或纵向的选项卡。'
+    });
+    return t;
+});
 require(['components'], function (c) {
     c.insertStyle(
         '.tab-menus.horizontal > div.tab-menu > ul {\n' +
@@ -182,6 +188,7 @@ require(['components'], function (c) {
         '}\n' +
         '.tab-menus > div.tab-content {\n' +
         '    height: 100%;\n' +
+        '    overflow: auto;\n' +
         '}\n' +
         '.tab-menus > div.tab-menu > ul {\n' +
         '    float: left;\n' +

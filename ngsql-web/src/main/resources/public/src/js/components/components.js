@@ -9,12 +9,7 @@ require(['tab', 'checkbox', 'handlebars', 'text!tpl/components/components.tpl'],
                     className: 'components-detail',
                     render: function () {
                         const template = hdb.compile(tpl);
-                        const context = {
-                            componentsName: '选择框',
-                            version: '1.0.4',
-                            author: 'kangjun'
-                        };
-                        return template(context);
+                        return template(Checkbox.prototype);
                     }
                 }, {
                     title: 'tab',

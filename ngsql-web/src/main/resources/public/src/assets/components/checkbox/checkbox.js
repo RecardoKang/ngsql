@@ -23,11 +23,11 @@ define("lib/checkbox/tpl/checkbox.tpl", ['handlebars'], function (e) {
                 name: "value",
                 hash: {},
                 data: a
-            }) : t)) + '" id="checkbox' + a.root.id + c((t = (t = l.value || (i != null ? i.value : i)) != null ? t : d, typeof t === o ? t.call(r, {
+            }) : t)) + '" id="checkbox' + a.root.id + a.index + c((t = (t = l.value || (i != null ? i.value : i)) != null ? t : d, typeof t === o ? t.call(r, {
                 name: "value",
                 hash: {},
                 data: a
-            }) : t)) + '">\r\n<label for="checkbox' + a.root.id + c((t = (t = l.value || (i != null ? i.value : i)) != null ? t : d, typeof t === o ? t.call(r, {
+            }) : t)) + '">\r\n<label for="checkbox' + a.root.id + a.index + c((t = (t = l.value || (i != null ? i.value : i)) != null ? t : d, typeof t === o ? t.call(r, {
                 name: "value",
                 hash: {},
                 data: a
@@ -56,9 +56,8 @@ define("lib/checkbox/tpl/checkbox.tpl", ['handlebars'], function (e) {
         }, useData: true
     })
 })
-define("checkbox", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/checkbox.tpl', 'components'], function (e, i, l, n, m) {
+define("checkbox_function", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/checkbox.tpl', 'components'], function (e, i, l, n, m) {
     "use strict";
-    const a = "1.1.3";
     const s = function (l) {
         e.extend(this.prototype, m.getEl.call(this, l));
         i.call(this);
@@ -110,8 +109,7 @@ define("checkbox", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/che
         }
     };
     e.extend(s.prototype, i.prototype, {
-        author: 'kangjun',
-        version: a, disabled: function (i) {
+        disabled: function (i) {
             f.call(this, i, "disabled", true)
         }, enable: function (i) {
             f.call(this, i, "disabled", false)
@@ -145,6 +143,17 @@ define("checkbox", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbox/tpl/che
     }
     return s;
 });
+define('checkbox', ['jquery', 'components', 'checkbox_function'], function (j, c, t) {
+    j.extend(t.prototype, c.temp, {
+        componentsName: '选择框',
+        version: '1.2.3',
+        author: '<span style="color: red">kangjun</span>',
+        componentsExample:
+            new t({title: '性别', items: [{label: '男', name: 'man'}, {label: "女", name: 'woman'}]}).$el.html(),
+        componentsDetail: '根据配置，在页面生成一个单选或多选的复选框。'
+    });
+    return t;
+});
 require(['components'], function (c) {
-    c.insertStyle("        .checkboxStyle input {\n            display: none\n        }\n\n        .checkboxStyle > .Block-PaddingL > li {\n            list-style-type: none;\n        }\n\n        .checkboxStyle > .Block-PaddingL > li > label {\n            border: 1px solid #CCC;\n            color: #666;\n            padding: 2px 10px 2px 5px;\n            line-height: 28px;\n            min-width: 80px;\n            text-align: center;\n            float: left;\n            margin: 2px;\n            border-radius: 4px\n        }\n\n        .checkboxStyle > .Block-PaddingL > li input:checked + label {\n            background: url(../../assets/lib/checkbox/img/ico_checkbox_on.svg) no-repeat right bottom;\n            border: 1px solid #00a4ff;\n            background-size: 21px 21px;\n            color: #00a4ff\n        }\n\n        .checkboxStyle > .Block-PaddingL > li input:disabled + label {\n            opacity: 0.5;\n        }\n\n        .checkboxStyle > .Block-PaddingL > li.title > label{\n            border: none;\n            color: black;\n            font-weight: bold;\n            min-width: auto;\n        }\n")
+    c.insertStyle("        .checkboxStyle input {\n            display: none\n        }\n\n        .checkboxStyle > .Block-PaddingL > li {\n            list-style-type: none;display: inline-block;\n        }\n\n        .checkboxStyle > .Block-PaddingL > li > label {\n            border: 1px solid #CCC;\n            color: #666;\n            padding: 2px 10px 2px 5px;\n            line-height: 28px;\n            min-width: 80px;\n            text-align: center;\n            float: left;\n            margin: 2px;\n            border-radius: 4px\n        }\n\n        .checkboxStyle > .Block-PaddingL > li input:checked + label {\n            background: url(../../assets/lib/checkbox/img/ico_checkbox_on.svg) no-repeat right bottom;\n            border: 1px solid #00a4ff;\n            background-size: 21px 21px;\n            color: #00a4ff\n        }\n\n        .checkboxStyle > .Block-PaddingL > li input:disabled + label {\n            opacity: 0.5;\n        }\n\n        .checkboxStyle > .Block-PaddingL > li.title > label{\n            border: none;\n            color: black;\n            font-weight: bold;\n            min-width: auto;\n        }\n")
 });
