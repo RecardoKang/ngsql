@@ -1,10 +1,11 @@
 requirejs.config({
     baseUrl: "../../",
     paths: {
-        "components":"assets/components/components",
+        "common": "assets/common/common",
+        "components": "assets/components/components",
         "radios": "assets/components/radios/radios",
         "jquery": "assets/common/jquery",
-        "text":"assets/common/text",
+        "text": "assets/common/text",
         "eventTarget": "assets/common/eventTarget",
         "handlebars": "assets/common/handlebars",
         "checkbox": "assets/components/checkbox/checkbox",
