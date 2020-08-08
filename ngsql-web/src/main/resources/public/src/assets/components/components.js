@@ -40,16 +40,31 @@ define("components", ['jquery', 'common'], function (j, c) {
             if (typeof s === "string" && s.length > 0) {
                 const tag = c.htmlTag.join("|");
                 return s
-                    // .replace(new RegExp('.*?(<)(a+?)(.*?[^>]*)(>)(.*?[^</]*)(</)(a)(>).*?', 'g'), '<span class="key">&lt;</span><span class="tag">$2</span>$3<span class="key">&gt;</span>$5<span class="key">&lt;/</span><span class="tag">$7</span><span class="key">&gt;</span>')
-                    // .replace(new RegExp('.*?(<)(?=a)(a+?)(.*?[^>]*)(>)(.*?[^</])(</)(a)(>).*?','g'),'<span class="key">&lt;</span><span class="tag">$2</span>$3<span class="key">&gt;</span>$5<span class="key">&lt;/</span><span class="tag">$7</span><span class="key">&gt;</span>')
-                    // .replace(new RegExp(".*?(<)(?=a)(a+?)(.*?[^>])(></)(a)(>).*?", 'g'), '<span class="key">&lt;</span><span class="tag">$2</span>$3<span class="key">&gt;&lt;/</span><span class="tag">$5</span><span class="key">&gt;</span>')
-                    // .replace(new RegExp(".*?(<)(?=a)(a+?)(></)(a)(>).*?", 'g'), '<span class="key">&lt;</span><span class="tag">$2</span><span class="key">&gt;&lt;/</span><span class="tag">$4</span><span class="key">&gt;</span>')
-                    .replace(new RegExp('(.*?)(<|</)([' + tag + ']+)(.*?[^>]*)(>|>/).*?', 'g'), function ($, $1, $2, $3, $4, $5) {
-                        return $1 + '<span class="key">' + ($2 === '<' ? '&lt;' : '&lt;/') + '</span><span class="tag">' + $3 + '</span>' + $4 + '<span class="key">' + ($5 === '>' ? '&gt;' : '/&gt;') + '</span>';
-                    })
+                    .replace(new RegExp('(.*?)(<|</)([' + tag + ']+)(.*?[^>]*)(>|>/).*?', 'g'),
+                        function ($, $1, $2, $3, $4, $5) {
+                            return $1 + '<span class="key">' + ($2 === '<' ? '&lt;' : '&lt;/') +
+                                '</span><span class="tag">' + $3 + '</span>' + $4 + '<span class="key">' +
+                                ($5 === '>' ? '&gt;' : '/&gt;') + '</span>';
+                        }
+                    )
+                    .replace(new RegExp('(.*?)(\'+.*?[^\']\'+)(.*?)', 'g'),
+                        '$1<span class="str">$2</span>$3'
+                    )
                     .replace(new RegExp('(var|let|const|return|new|function|:|!)', 'g'), '<span class="key">$1</span\>')
-                    .replace(new RegExp('(render|click|log)', 'g'), '<span class="fun">$1</span\>')
+                    .replace(new RegExp('(render|click|log|console)', 'g'), '<span class="fun">$1</span\>')
                     .replace(new RegExp('(//(.*))', 'g'), '<span class="note">$1</span\>')
+                    .replace(new RegExp('(.*?)(&nbsp;)([1-9]*)(.*?)', 'g'),
+                        function ($, $1, $2, $3, $4) {
+                            let space = '';
+                            if (!isNaN($3)) {
+                                let i = 1;
+                                for (; i < $3; i++) {
+                                    space += '&nbsp;';
+                                }
+                            }
+                            return $1 + $2 + space + ($4);
+                        }
+                    )
                     .replace(new RegExp('\n', 'g'), "<br>")
                     ;
             }

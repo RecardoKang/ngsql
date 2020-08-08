@@ -44,7 +44,7 @@
 </style>
 <div class="components-detail">
     <h1>
-        {{{componentsName}}}
+        {{{name}}}
         <small id="version">({{{version}}})</small>
         <span>
             <a title="作者" class="components-author" href="javascript:">{{{author}}}</a>
@@ -53,8 +53,8 @@
     </h1>
     <div>
         <h2>示例</h2>
-        {{#if componentsExample}}
-        <p>{{{componentsExample}}}</p>
+        {{#if example}}
+        <p>{{{example}}}</p>
         {{else}}
         <p>暂无数据</p>
         {{/if}}
@@ -62,8 +62,8 @@
     <h1>
         介绍
     </h1>
-    {{#if componentsDetail}}
-    <p>{{{componentsDetail}}}</p>
+    {{#if detail}}
+    <p>{{{detail}}}</p>
     {{else}}
     <p>暂无数据</p>
     {{/if}}
@@ -73,8 +73,8 @@
     <div class="initialism">
         <button class="copy-code">复制</button>
         <code class="code-hide github">
-            {{#if componentsCode}}
-            {{{componentsCode}}}
+            {{#if code}}
+            {{{code}}}
             {{else}}
             暂无数据
             {{/if}}

@@ -8,12 +8,12 @@ require(['tab', 'checkbox', 'handlebars', 'text!tpl/components/components.tpl'],
                 {
                     title: 'checkbox',
                     render: function () {
-                        return template(Checkbox.prototype);
+                        return template(Checkbox.prototype.illustration);
                     }
                 }, {
                     title: 'tab',
                     render: function () {
-                        return template(Tab.prototype);
+                        return template(Tab.prototype.illustration);
                     }
                 }
             ]

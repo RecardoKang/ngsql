@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org//dtd/mybaits-3-mapper.dtd">
+<mapper namespace="com.cmos.ngsql.dao.basic.GetUserInfoDao">
+    <select id="getUserInfo" parameterType="java.util.Map" resultType="java.util.Map">
+        SELECT * FROM `user_info` WHERE `USER_NAME`=#{name};
+    </select>
+</mapper>

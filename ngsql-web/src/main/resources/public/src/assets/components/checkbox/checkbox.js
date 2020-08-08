@@ -3,8 +3,8 @@ define("lib/checkbox/tpl/checkbox.tpl", ['handlebars'], function (e) {
         1: function (e, i, l, n, a) {
             let s, t, r = i != null ? i : e.nullContext || {}, d = l.helperMissing, o = "function",
                 c = e.escapeExpression;
-            return '<li class="' + c((t = (t = l.className || (i != null ? i.className : i)) != null ? t : d, typeof t === o ? t.call(r, {
-                name: "className",
+            return '<li class="' + c((t = (t = l.class || (i != null ? i.class : i)) != null ? t : d, typeof t === o ? t.call(r, {
+                name: "class",
                 hash: {},
                 data: a
             }) : t)) + '">   <input type="' + ((s = (a.root && a.root.type === "checkbox" ? a.root.type : "radio")) === "radio" ? s + '" name="checkbox_com" ' : s + '" ') + ((s = (l.ifInDisabledValue || i && i.ifInDisabledValue || d).call(r, i != null ? i.value : i, {
@@ -42,8 +42,8 @@ define("lib/checkbox/tpl/checkbox.tpl", ['handlebars'], function (e) {
             return 'checked'
         }, compiler: [7, ">4.0.0"], main: function (e, i, l, n, a) {
             let b, s, t, r = i != null ? i : e.nullContext || {};
-            return '<div class="checkboxStyle' + e.escapeExpression((t = (t = l.className || (i != null ? i.className : i)) != null ? t : l.helperMissing, typeof t === "function" ? t.call(r, {
-                name: "className",
+            return '<div class="checkboxStyle' + e.escapeExpression((t = (t = l.class || (i != null ? i.class : i)) != null ? t : l.helperMissing, typeof t === "function" ? t.call(r, {
+                name: "class",
                 hash: {},
                 data: a
             }) : t)) + '">\r\n <div class="Block-PaddingL">\r\n' + ((b = (i && i.title != null ? i.title : null)) != null ? '<li class="title"><label>' + b + '</label></li>' : "") + ((s = l.each.call(r, i != null ? i.items : i, {
@@ -145,18 +145,85 @@ define("checkbox_function", ['jquery', 'eventTarget', 'handlebars', 'lib/checkbo
 });
 define('checkbox', ['jquery', 'components', 'checkbox_function'], function (j, c, t) {
     j.extend(t.prototype, c.temp, {
-        //这是一段注释
-        componentsName: '选择框',
-        version: '1.2.4',
-        author: '<span style="color: red">kangjun</span>',
-        componentsExample:
-            new t({title: '单选框', items: [{label: '男', name: 'man'}, {label: "女", name: 'woman'}]}).$el.html() + '<br>' +
-            new t({
-                title: '复选框', type: 'checkbox',
-                items: [{label: '中国', name: 'china'}, {label: "日本", name: 'japan'}, {label: "美国", name: 'american'}]
-            }).$el.html(),
-        componentsDetail: '根据配置，在页面生成一个单选或多选的复选框。',
-        componentsCode: c.code('var a = b;//for test\nlet c = d + f;//ddd\nconst e = new tab//测试\nrender:function(){}\n <a class="a"><p>test</p>ddd</a>\n<a class="b"></a>\n<a>test</a>\n<a></a>\n<p>ptag</p>\n<input vd>')
+        illustration: {
+            //这是一段注释
+            name: '选择框',
+            version: '1.2.4',
+            author: '<span style="color: red">kangjun</span>',
+            example:
+                new t({
+                    title: '单选框',
+                    items: [{label: '男', name: 'man'}, {label: "女", name: 'woman'}]
+                }).$el.html() + '<br>' +
+                new t({
+                    title: '复选框', type: 'checkbox',
+                    items: [{label: '中国', name: 'china'}, {label: "日本", name: 'japan'}, {label: "美国", name: 'american'}]
+                }).$el.html(),
+            detail: '根据配置，在页面生成一个单选或多选的复选框。',
+            code: c.code('const config = {\n&nbsp;&nbsp;&nbsp;&nbsp;el:&nbsp;\'#id\',//绑定的容器,可以是jQuery对象;非必填\n' +
+                '&nbsp;4title: \'性别\',//标题;可选\n' +
+                '&nbsp;4type: \'radio\',//类型,默认值为radio,枚举值为checkbox;可选\n' +
+                '&nbsp;4class: \'\',//组件的class;可选\n' +
+                '&nbsp;4disabled: \'man\'//初始化时需要禁用的选项的value,多个值用逗号分隔;可选\n' +
+                '&nbsp;4defaultValue: \'man\'//初始化时需要选中的选项的value,多个值用逗号分隔;可选\n' +
+                '&nbsp;4items: [//组件选项内容,格式为listMap\n' +
+                '&nbsp;8{\n' +
+                '&nbsp;12class: \'box1\',//选项的class;可选\n' +
+                '&nbsp;12label: \'男\',//需要显示的选项内容;必填\n' +
+                '&nbsp;12value: \'man\'//选项对应的值,用于操作选项;必填\n' +
+                '&nbsp;8},&nbsp;{\n' +
+                '&nbsp;12class: \'box2\',//选项的class;可选\n' +
+                '&nbsp;12label: \'女\',//需要显示的选项内容;必填\n' +
+                '&nbsp;12value: \'woman\'//选项对应的值,用于操作选项;必填\n' +
+                '&nbsp;8}\n&nbsp;4};\nconst checkbox = new ') +
+                '<span class="par">Checkbox</span>(config);',
+            fun: [
+                {
+                    name: 'get',
+                    code: 'checkbox.' + '<span class="fun">get</span>();' +
+                        c.code('//获取勾选的选项,返回逗号分隔的选项value')
+                }, {
+                    name: 'check',
+                    code: 'checkbox.' + '<span class="fun">check</span>();' +
+                        c.code('//勾选指定选项,不提供值则勾选所有选项,可提供的值为选项的value,多个值用逗号分隔\n') +
+                        'checkbox.' + '<span class="fun">check</span>' +
+                        c.code('(\'man\');//勾选选项“男”\n')
+                }, {
+                    name: 'uncheck',
+                    code: 'checkbox.' + '<span class="fun">uncheck</span>();' +
+                        c.code('//取消勾选指定选项,不提供值则取消勾选所有选项,可提供的值为选项的value,多个值用逗号分隔\n') +
+                        'checkbox.' + '<span class="fun">uncheck</span>' +
+                        c.code('(\'man\');//取消勾选选项“男”\n')
+                }, {
+                    name: 'disabled',
+                    code: 'checkbox.' + '<span class="fun">disabled</span>();' +
+                        c.code('//禁用指定选项,不提供值则禁用所有选项,可提供的值为选项的value,多个值用逗号分隔\n') +
+                        'checkbox.' + '<span class="fun">disabled</span>' +
+                        c.code('(\'man\');//禁用选项“男”\n')
+                }, {
+                    name: 'enable',
+                    code: 'checkbox.' + '<span class="fun">enable</span>();' +
+                        c.code('//激活被禁用的选项,不提供值则激活所有选项,可提供的值为选项的value,多个值用逗号分隔\n') +
+                        'checkbox.' + '<span class="fun">enable</span>' +
+                        c.code('(\'man\');//激活选项“男”\n')
+                }, {
+                    name: 'destroy',
+                    code: 'checkbox.' + '<span class="fun">destroy</span>();' +
+                        c.code('//删除组件')
+                }
+            ],
+            event: [
+                {
+                    name: 'change',
+                    code: 'checkbox.' + '<span class="fun">on</span>' +
+                        c.code('(\'change\', function (') + '<span class="par">data</span>' +
+                        c.code(') {\n&nbsp;4//radio状态下返回被选中选中值,checkbox状态下返回状态变更的选项\n' +
+                            '&nbsp;4//通过代码更改选项选中状态不触发change事件\n' +
+                            '&nbsp;4console.log(') + '<span class="par">data</span>' +
+                        c.code(');//data包含被选中选项的初始化值以及checked、disabled状态\n}')
+                }
+            ]
+        }
     });
     return t;
 });
