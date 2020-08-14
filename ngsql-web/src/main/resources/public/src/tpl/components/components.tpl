@@ -3,7 +3,7 @@
         padding: 20px;
     }
 
-    .components-detail > h1::before {
+    .components-detail > h1:before {
         content: '';
         padding-left: 10px;
         border-left: 3px solid #008ee6;
@@ -40,6 +40,60 @@
 
     .initialism > code {
         display: inline-block;
+    }
+
+    .update-log {
+        width: 100%;
+        max-width: 500px;
+        display: inline-block;
+    }
+
+    .update-log > div {
+        float: left;
+        border: 1px solid #e6e7f1;
+        margin-left: -2px;
+    }
+
+    .update-log > div.version {
+        width: 20%;
+    }
+
+    .update-log > div.description {
+        width: 80%;
+    }
+
+    .update-log > div > ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    .update-log > div > ul > li {
+        height: 42px;
+        line-height: 42px;
+        list-style-type: none;
+        border-bottom: 1px solid #e6e7f1;
+        padding: 0 1em;
+        text-align: center;
+    }
+
+    .update-log > div.version {
+        background-color: #798299;
+    }
+
+    .update-log > div.version > ul > li {
+        border-bottom-color: #6b758d;
+    }
+
+    .update-log > div.version > ul > li {
+        background-color: transparent;
+    }
+
+    .update-log > div.version > ul > li.even {
+        background-color: rgba(107, 117, 141, .95);
+    }
+
+    .update-log > div.description > ul > li.even {
+        background-color: #f6f7fa;
     }
 </style>
 <div class="components-detail">
@@ -105,4 +159,22 @@
     <h1>
         更新日志
     </h1>
+    <div class="update-log">
+        {{#if log}}
+        <div class="version">
+            <ul>
+                {{#each log}}
+                <li class="{{class}}">{{version}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        <div class="description">
+            <ul>
+                {{#each log}}
+                <li class="{{class}}">{{description}}</li>
+                {{/each}}
+            </ul>
+        </div>
+        {{/if}}
+    </div>
 </div>

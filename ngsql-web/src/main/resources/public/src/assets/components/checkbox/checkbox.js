@@ -222,6 +222,27 @@ define('checkbox', ['jquery', 'components', 'checkbox_function'], function (j, c
                             '&nbsp;4console.log(') + '<span class="par">data</span>' +
                         c.code(');//data包含被选中选项的初始化值以及checked、disabled状态\n}')
                 }
+            ],
+            log: [
+                {
+                    version: '1.2.4',
+                    class: 'even',
+                    description: '优化布局。'
+                }, {
+                    version: '1.1.0',
+                    description: '新增uncheck和enable方法。'
+                }, {
+                    version: '1.0.0',
+                    class: 'even',
+                    description: '功能实现，bug修复。'
+                }, {
+                    version: '0.5.0',
+                    description: '代码优化和简化。'
+                }, {
+                    version: '0.1.0',
+                    class: 'even',
+                    description: '启动版本,完成基本功能。'
+                }
             ]
         }
     });
