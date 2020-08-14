@@ -9,7 +9,8 @@ requirejs.config({
         "eventTarget": "assets/common/eventTarget",
         "handlebars": "assets/common/handlebars",
         "checkbox": "assets/components/checkbox/checkbox",
-        "tab": "assets/components/tab/tab"
+        "tab": "assets/components/tab/tab",
+        "dialog": "assets/components/dialog/dialog.js"
     },
     shim: {},
     waitSeconds: 0
