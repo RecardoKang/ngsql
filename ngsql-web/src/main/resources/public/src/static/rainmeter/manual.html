@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="zh-en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=0.9, maximum-scale=0.9">
+    <meta itemprop="name" content="Manual - Rainmeter Docs">
+    <meta property="og:title" content="Manual - Rainmeter Docs">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.rainmeter.net">
+    <meta property="og:image" content="https://www.rainmeter.net/img/media_image.png">
+    <meta property="og:site_name" content="Rainmeter">
+    <meta property="og:locale" content="en_US">
+
+    <title>正式版 - 雨滴</title>
+
+    <link rel="stylesheet" href="../../assets/css/rainmeter/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/rainmeter/rainmeter.css">
+    <link rel="stylesheet" href="../../assets/css/rainmeter/jquery.fancybox.min.css">
+    <link rel="stylesheet" href="../../assets/css/rainmeter/home.css">
+    <link href="../../assets/css/rainmeter/docs.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="../../assets/img/rainmeter/favicon.ico">
+</head>
+<body>
+
+
+<nav id="navbar" class="navbar navbar-expand-lg navbar-dark">
+    <div class="container">
+        <a class="navbar-brand" href="https://docs.rainmeter.net/"><img src="../../assets/img/rainmeter/logo_nav.png"
+                                                                        alt=""></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavigation"
+                aria-controls="mainNavigation" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="mainNavigation">
+            <ul class="navbar-nav order-12">
+                <li class="nav-item "><a class="nav-link" href="./home.html">主页</a></li>
+                <li class="nav-item active"><a class="nav-link" href="./documentation.html">文档</a></li>
+                <li class="nav-item "><a class="nav-link" href="https://rainmeter.net/discover">Discover</a></li>
+                <li class="nav-item "><a class="nav-link" href="https://forum.rainmeter.net/">Community</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div id="content">
+    <div id="nav-button" class="docs-nav-button">
+        <div class="container d-flex flex-row align-items-center">
+            <svg onclick="openNavMenu()" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                 fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+                 class="feather feather-menu">
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+            </svg>
+            <a onclick="openNavMenu()">Open navigation</a>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+
+            <div id="menu" class="docs-nav col-12 col-lg-3"
+                 style="width: 18rem; transition: left 0.2s ease 0s; z-index: 999; left: 0;">
+                <h4 id="category"><a href="https://docs.rainmeter.net/manual">正式版4.3</a></h4>
+                <svg class="closeButton" onclick="closeNavMenu()" xmlns="http://www.w3.org/2000/svg" width="24"
+                     height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                     stroke-linecap="round" stroke-linejoin="round">
+                    <line x1="18" y1="6" x2="6" y2="18"></line>
+                    <line x1="6" y1="6" x2="18" y2="18"></line>
+                </svg>
+                <form id="search-form" method="get" action="https://www.google.com/search">
+                    <input name="sitesearch" value="docs.rainmeter.net" type="hidden">
+                    <input class="form-control" id="search" name="q" maxlength="255" size="16" placeholder="搜索"
+                           type="text">
+                </form>
+                <hr>
+                <nav id="sidenav" class="sidenav">
+                    <h4>目录</h4>
+                    <ul class="docs-nav-block">
+                        <li><a href="https://docs.rainmeter.net/manual/getting-started/">Getting Started</a>
+                            <ul class="hide">
+                                <li><a href="https://docs.rainmeter.net/manual/getting-started/setting-up/">Setting
+                                    Up</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/getting-started/using-rainmeter/">Using
+                                    Rainmeter</a>
+                                </li>
+                                <li>
+                                    <a href="https://docs.rainmeter.net/manual/getting-started/customizing/">Customizing</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/getting-started/creating-skins/">Creating
+                                    Skins</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/getting-started/skin-anatomy/">Anatomy of
+                                    a Skin</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/getting-started/basic-tutorials/">Basic
+                                    Tutorials</a>
+                                    <ul class="hide">
+                                        <li>
+                                            <a href="https://docs.rainmeter.net/manual/getting-started/basic-tutorials/launcher/">Launcher</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://docs.rainmeter.net/manual/getting-started/basic-tutorials/clock/">Clock</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://docs.rainmeter.net/manual/getting-started/basic-tutorials/system/">System</a>
+                                        </li>
+                                    </ul>
+                                    <span class="expander open"></span></li>
+                            </ul>
+                            <span class="expander open"></span></li>
+                        <li><a href="https://docs.rainmeter.net/manual/installing-rainmeter/">Installing Rainmeter</a>
+                        </li>
+                        <li><a href="https://docs.rainmeter.net/manual/user-interface/">User Interface</a>
+                            <ul class="hide">
+                                <li><a href="https://docs.rainmeter.net/manual/user-interface/manage/">Manage</a>
+                                    <ul class="hide">
+                                        <li><a href="https://docs.rainmeter.net/manual/user-interface/manage/new-skin">New
+                                            Skin</a>
+                                        </li>
+                                    </ul>
+                                    <span class="expander open"></span></li>
+                                <li><a href="https://docs.rainmeter.net/manual/user-interface/about/">About</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/user-interface/context-menus/">Context
+                                    Menus</a>
+                                </li>
+                            </ul>
+                            <span class="expander open"></span></li>
+                        <li><a href="https://docs.rainmeter.net/manual/installing-skins/">Installing Skins</a>
+                        </li>
+                        <li><a href="https://docs.rainmeter.net/manual/arranging-skins/">Arranging Skins</a>
+                        </li>
+                        <li><a href="https://docs.rainmeter.net/manual/distributing-skins/">Distributing Skins</a>
+                            <ul class="hide">
+                                <li><a href="https://docs.rainmeter.net/manual/distributing-skins/vault-folder/">@Vault
+                                    Folder</a>
+                                </li>
+                            </ul>
+                            <span class="expander open"></span></li>
+                    </ul>
+                    <h4>参考资料</h4>
+                    <ul class="docs-nav-block">
+                        <li><a href="https://docs.rainmeter.net/manual/settings/">Settings</a>
+                            <ul class="hide">
+                                <li><a href="https://docs.rainmeter.net/manual/settings/rainmeter-section/">[Rainmeter]
+                                    Section</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/settings/traymeasure-section/">[TrayMeasure]
+                                    Section</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/settings/skin-sections/">[Skin]
+                                    Sections</a>
+                                </li>
+                            </ul>
+                            <span class="expander open"></span></li>
+                        <li><a href="https://docs.rainmeter.net/manual/skins/">Skins</a>
+                            <ul class="hide">
+                                <li><a href="https://docs.rainmeter.net/manual/skins/option-types/">Option Types</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/skins/rainmeter-section/">[Rainmeter]
+                                    Section</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/skins/metadata-section/">[Metadata]
+                                    Section</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/skins/include-option/">@Include
+                                    Options</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/skins/resources-folder/">@Resources
+                                    Folder</a>
+                                </li>
+                            </ul>
+                            <span class="expander open"></span></li>
+                        <li><a href="https://docs.rainmeter.net/manual/meters/">Meters</a>
+                            <ul class="hide">
+                                <li><a href="https://docs.rainmeter.net/manual/meters/general-options/">General
+                                    Options</a>
+                                    <ul class="hide">
+                                        <li>
+                                            <a href="https://docs.rainmeter.net/manual/meters/general-options/image-options/">Image
+                                                Options</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://docs.rainmeter.net/manual/meters/general-options/meterstyles/">MeterStyles</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://docs.rainmeter.net/manual/meters/general-options/tooltips/">Tooltips</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://docs.rainmeter.net/manual/meters/general-options/container/">Container</a>
+                                        </li>
+                                    </ul>
+                                    <span class="expander open"></span></li>
+                                <li><a href="https://docs.rainmeter.net/manual/meters/bar/">Bar</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/meters/bitmap/">Bitmap</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/meters/button/">Button</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/meters/histogram/">Histogram</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/meters/image/">Image</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/meters/line/">Line</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/meters/rotator/">Rotator</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/meters/roundline/">Roundline</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/meters/shape/">Shape</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/meters/string/">String</a>
+                                    <ul class="hide">
+                                        <li><a href="https://docs.rainmeter.net/manual/meters/string/inline/">Inline
+                                            Options</a>
+                                        </li>
+                                    </ul>
+                                    <span class="expander open"></span></li>
+                            </ul>
+                            <span class="expander open"></span></li>
+                        <li><a href="https://docs.rainmeter.net/manual/measures/">Measures</a>
+                            <ul class="hide">
+                                <li><a href="https://docs.rainmeter.net/manual/measures/general-options/">General
+                                    Options</a>
+                                    <ul class="hide">
+                                        <li>
+                                            <a href="https://docs.rainmeter.net/manual/measures/general-options/ifactions/">IfActions</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://docs.rainmeter.net/manual/measures/general-options/ifconditions/">IfConditions</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://docs.rainmeter.net/manual/measures/general-options/ifmatchactions/">IfMatchActions</a>
+                                        </li>
+                                        <li>
+                                            <a href="https://docs.rainmeter.net/manual/measures/general-options/substitute/">Substitute</a>
+                                        </li>
+                                    </ul>
+                                    <span class="expander open"></span></li>
+                                <li><a href="https://docs.rainmeter.net/manual/measures/calc/">Calc</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/measures/cpu/">CPU</a>
+                                </li>
+                                <li>
+                                    <a href="https://docs.rainmeter.net/manual/measures/freediskspace/">FreeDiskSpace</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/measures/loop/">Loop</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/measures/mediakey/">MediaKey</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/measures/memory/">Memory</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/measures/net/">Net</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/measures/nowplaying/">NowPlaying</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/measures/plugin/">Plugin</a>
+                                </li>
+                                <li>
+                                    <a href="https://docs.rainmeter.net/manual/measures/recyclemanager/">RecycleManager</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/measures/registry/">Registry</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/measures/script/">Script</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/measures/string/">String</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/measures/time/">Time</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/measures/uptime/">Uptime</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/measures/webparser/">WebParser</a>
+                                </li>
+                            </ul>
+                            <span class="expander open"></span></li>
+                        <li><a href="https://docs.rainmeter.net/manual/plugins/">Plugins</a>
+                            <ul class="hide">
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/actiontimer/">ActionTimer</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/audiolevel/">AudioLevel</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/coretemp/">CoreTemp</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/fileview/">FileView</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/folderinfo/">FolderInfo</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/inputtext/">InputText</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/ping/">Ping</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/power/">Power</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/process/">Process</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/quote/">Quote</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/resmon/">ResMon</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/runcommand/">RunCommand</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/speedfan/">SpeedFan</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/sysinfo/">SysInfo</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/usagemonitor/">UsageMonitor</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/wifistatus/">WiFiStatus</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/win7audio/">Win7Audio</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/windowmessage/">WindowMessage</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/plugins/deprecated/">Deprecated
+                                    Plugins</a>
+                                    <ul class="hide">
+                                        <li><a href="https://docs.rainmeter.net/manual/plugins/deprecated/advancedcpu/">AdvancedCPU</a>
+                                        </li>
+                                        <li><a href="https://docs.rainmeter.net/manual/plugins/deprecated/itunes/">iTunes</a>
+                                        </li>
+                                        <li><a href="https://docs.rainmeter.net/manual/plugins/deprecated/perfmon/">PerfMon</a>
+                                        </li>
+                                    </ul>
+                                    <span class="expander open"></span></li>
+                            </ul>
+                            <span class="expander open"></span></li>
+                        <li><a href="https://docs.rainmeter.net/manual/bangs/">Bangs</a>
+                        </li>
+                        <li><a href="https://docs.rainmeter.net/manual/formulas/">Formulas</a>
+                        </li>
+                        <li><a href="https://docs.rainmeter.net/manual/variables/">Variables</a>
+                            <ul class="hide">
+                                <li><a href="https://docs.rainmeter.net/manual/variables/nesting-variables/">Nesting
+                                    Variables</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/variables/built-in-variables/">Built-In
+                                    Variables</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/variables/section-variables/">Section
+                                    Variables</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/variables/character-variables/">Character
+                                    Variables</a>
+                                </li>
+                                <li><a href="https://docs.rainmeter.net/manual/variables/mouse-variables/">Mouse
+                                    Variables</a>
+                                </li>
+                            </ul>
+                            <span class="expander open"></span></li>
+                        <li><a href="https://docs.rainmeter.net/manual/groups/">Groups</a>
+                        </li>
+                        <li><a href="https://docs.rainmeter.net/manual/mouse-actions/">Mouse Actions</a>
+                        </li>
+                        <li><a href="https://docs.rainmeter.net/manual/lua-scripting/">Lua Scripting</a>
+                            <ul class="hide">
+                                <li><a href="https://docs.rainmeter.net/manual/lua-scripting/inline-lua/">Inline Lua</a>
+                                </li>
+                            </ul>
+                            <span class="expander open"></span></li>
+                    </ul>
+                    <h4>更多</h4>
+                    <ul class="docs-nav-block">
+                        <li><a href="https://docs.rainmeter.net/manual-beta/">4.4 Beta Manual</a>
+                        </li>
+                        <li><a href="https://docs.rainmeter.net/tips/">Tips &amp; Tricks</a>
+                        </li>
+                        <li><a href="https://docs.rainmeter.net/snippets/">Snippets</a>
+                        </li>
+                        <li><a href="https://docs.rainmeter.net/developers/">Developers</a>
+                        </li>
+                        <li><a href="https://docs.rainmeter.net/history/">Version History</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+
+            <div class="docs-content col-12 col-lg-9">
+                <h1 class="page-title">使用手册</h1>
+                <hr>
+
+                <p>Rainmeter displays customizable skins, like memory and battery charge, RSS feeds and weather
+                    forecasts, right on your desktop. Many skins are even functional: they can record your notes and
+                    to-do lists, launch your favorite applications, and control your media player - all in a clean,
+                    unobtrusive interface that you can rearrange and customize to your liking. Rainmeter is at once an
+                    application and a toolkit. You are limited only by your imagination and creativity.</p>
+                <h2 id="GettingStarted">Getting started with Rainmeter</h2>
+                <p>After <a href="http://www.rainmeter.net/">downloading</a> and <a
+                        href="https://docs.rainmeter.net/manual/installing-rainmeter/">installing</a> Rainmeter, the
+                    very next stop should be <a href="https://docs.rainmeter.net/manual/getting-started/">Getting
+                        Started</a>.</p>
+                <p>Getting Started is a <b>new user</b> introduction to Rainmeter, covering both how to use the
+                    application, and starting guides and tutorials for creating and editing skins.</p>
+                <p>Using the rest of this documentation, and the experience of using and learning Rainmeter, will be
+                    much easier and more enjoyable with the overview Getting Started provides.</p>
+                <h2 id="UsingRainmeter">Using the Rainmeter application</h2>
+                <p>The <a href="https://docs.rainmeter.net/manual/user-interface/">User Interface</a> section of the
+                    manual describes how to use the application to manage Rainmeter on the desktop. Control things with
+                    the <a href="https://docs.rainmeter.net/manual/user-interface/manage/">Manage</a> interface and <a
+                            href="https://docs.rainmeter.net/manual/user-interface/context-menus/">context menus</a>,
+                    and monitor important information using <a
+                            href="https://docs.rainmeter.net/manual/user-interface/about/">About</a>.</p>
+                <p>It won't be long before you want to extend your library of skins beyond the default <b>illustro</b>
+                    suite included with Rainmeter, with others downloaded from the internet. The <a
+                            href="https://docs.rainmeter.net/manual/installing-skins/">Installing Skins</a> section
+                    explains how to install and load the thousands of skins available for Rainmeter.</p>
+                <h2 id="CreateEditSkins">Creating and editing skins</h2>
+                <p>Rainmeter can be used as a straightforward skin manager, loading and using skins created by others.
+                    However, the real power and fun of Rainmeter can only be unlocked when the transition is made from
+                    "user" to "author". The <a href="https://docs.rainmeter.net/manual/#Reference">Reference</a> section
+                    of the manual contains everything needed to craft that perfect skin that does exactly what you
+                    require, and looks just right on your desktop.</p>
+                <p><a href="https://docs.rainmeter.net/manual/settings/">Settings</a> contains detailed information
+                    about the <b>Rainmeter.ini</b> file, which controls many important aspects of Rainmeter on the
+                    desktop.</p>
+                <p>The <a href="https://docs.rainmeter.net/manual/skins/">Skins</a> section describes what a skin's .ini
+                    file contains and does. It also is a reference for several powerful overall skin features.</p>
+                <p>The next sections, <a href="https://docs.rainmeter.net/manual/meters/">Meters</a>, <a
+                        href="https://docs.rainmeter.net/manual/measures/">Measures</a> and <a
+                        href="https://docs.rainmeter.net/manual/plugins/">Plugins</a>, are the core information for
+                    creating skins. Measures and plugins gather information from the system or the internet, and meters
+                    display things, with many different meter types and practically unlimited control over style.</p>
+                <p>The following sections provide a reference for other powerful skin options and features. Bring skins
+                    to life with <a href="https://docs.rainmeter.net/manual/bangs/">Bangs</a> and <a
+                            href="https://docs.rainmeter.net/manual/mouse-actions/">Mouse Actions</a>, and extend
+                    Rainmeter's functionality using the <a href="https://docs.rainmeter.net/manual/lua-scripting/">Lua
+                        Scripting</a> language.</p>
+                <p>One of the most exciting things about Rainmeter is the free and open sharing of skins in the
+                    community. See <a href="https://docs.rainmeter.net/manual/publishing-skins/">Publishing Skins</a>
+                    for everything needed to package and distribute suites and skins.</p>
+                <h2 id="MoreInformation">More information</h2>
+                <p>Be sure to check the <a href="https://docs.rainmeter.net/tips/">Tips &amp; Tricks</a> section for a
+                    wealth of guides and suggestions from the Rainmeter community.</p>
+                <p>The <a href="https://docs.rainmeter.net/snippets/">Snippets</a> section contains a collection of
+                    useful "snippets" of Lua script code, from the Rainmeter Team and users.</p>
+                <p>Remember, there is an entire community of people willing and able to help when things get stuck. Be
+                    sure to use the <a href="https://forum.rainmeter.net/">Rainmeter Forum</a> or jump on the web-based
+                    <a href="https://webchat.freenode.net/?channels=rainmeter">IRC channel</a> when help is needed.</p>
+                <hr>
+                <p><b>Note:</b> Most option entries and header text in the manual can be selected with <b>CTRL-Click</b>
+                    to add an <b>#anchor</b> to the URL. This makes it easy to link to a specific part of a page. Try it
+                    below.</p>
+                <dl>
+                    <dt id="SampleOption"><code>SampleOption</code></dt>
+                    <dd></dd>
+                </dl>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer id="footer">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">Made with ❤ by the community.</div>
+            <div class="col-6 text-right text-md-right">Icons by <a href="http://www.freepik.com/"
+            >Freepik</a> and <a
+                    href="https://feathericons.com/">feathericons.com</a></div>
+        </div>
+    </div>
+</footer>
+
+<script src="../../assets/common/jquery.js"></script>
+<script src="../../js/rainmeter/main.js"></script>
+<script src="../../js/rainmeter/popper.min.js"></script>
+<script src="../../js/rainmeter/bootstrap.min.js"></script>
+<script src="../../js/rainmeter/ahk-sliding-panel.js"></script>
+<script src="../../js/rainmeter/jquery.fancybox.min.js"></script>
+
+<script>
+    // set slideout menu variables
+    var docsnav = new ahk_slideout({
+        id: "menu",
+        side: "left",
+        width: "18rem",
+        touch_boundary: "50",
+        slide_time: "0.2"
+    })
+
+    // function to toggle menu
+    function openNavMenu() {
+        docsnav.openMenu()
+    }
+
+    // function to close menu
+    function closeNavMenu() {
+        docsnav.closeMenu()
+    }
+
+    // when scrolling below 90, add sticky class to nav-button
+    $(function () {
+        var header = $("#nav-button");
+        $(window).scroll(function () {
+            var scroll = $(window).scrollTop();
+            if (scroll >= 90) {
+                header.addClass("sticky");
+            } else {
+                header.removeClass("sticky");
+            }
+        });
+    });
+</script>
+
+</body>
+</html>
